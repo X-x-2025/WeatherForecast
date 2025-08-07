@@ -1,0 +1,29 @@
+/* src/assets/reset.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 清除表单元素默认样式 */
+input,button,textarea,select {
+    font: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+/* 清除图片底部间隙 */
+img {
+    display: block;
+    max-width: 100%;
+}
