@@ -1,6 +1,8 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import { useCounterStore } from '../stores/counter';
+const user = useCounterStore()
 const nowtemperature = ref(null);
 const text = ref(null);
 const wind_scale = ref(null);
@@ -10,7 +12,7 @@ const humidity = ref(null);
 const weatherimg = ref(null)
 async function fun2(){
     await axios({
-        url:'https://api.seniverse.com/v3/weather/now.json?key=SfG87iro5XUCJp97J&location=guangzhou',
+        url:`https://api.seniverse.com/v3/weather/now.json?key=SfG87iro5XUCJp97J&location=${user.city}`,
         method:'GET', 
     }).then((res)=>{
             // 处理图片
@@ -71,12 +73,14 @@ async function fun2(){
         pressure.value = res.data.results[0].now.pressure;
         // 湿度
         humidity.value = res.data.results[0].now.humidity;
-        console.log(res.data);
+        // console.log(res.data);
     }).catch((err)=>{
         console.log(err);
     })
 }
 fun2()
+console.log(user.city);
+
 </script>
 <template>
 <div>

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import axios  from 'axios';
 import { useCounterStore } from '../stores/counter';
-const user = useCountStore()
+const user = useCounterStore()
 
 const montharr = ref([]);
 const weekarr = ref([]);
@@ -18,7 +18,7 @@ const nightweatherimgarr = ref([]);
 
 async function fun3(){
      await axios({
-        url:'https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=guangzhou&language=zh-Hans&unit=c&start=-1&days=7',
+        url:`https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`,
         method:'GET',
      }).then((res) => {
         // console.log(res.data);

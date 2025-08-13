@@ -1,9 +1,16 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, watch} from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
-const user = useCountStore()
+const user = useCounterStore()
+const changeCity = (data) => {
+    user.city = data
+}
+// watch(user.city,(newValue,oldValue) => {
+//     console.log(newValue);
+// })
+console.log(user.city);
 
 </script>
 <template>
@@ -14,29 +21,27 @@ const user = useCountStore()
         <a>腾讯网首页</a>&nbsp;&nbsp;
         <a>无障碍浏览</a>
         </div>
-        <div class="location">广东省&nbsp;&nbsp;广州市<a href="">&nbsp;&nbsp;[添加关注]</a></div>
+        <div class="location">{{user.city}}<a href="">&nbsp;&nbsp;[添加关注]</a></div>
         <input  ref="input" type="search">
         <div  class="hidden">
             <h4>当前定位</h4>
             <div>广州市</div>
             <table>
                 <tr>
-                    <td>北京</td>
-                    <td>上海</td>
-                    <td>广州</td>
+                    <td @click="changeCity('北京')">北京</td>
+                    <td @click="changeCity('上海')">上海</td>
+                    <td @click="changeCity('广州')">广州</td>
                 </tr>
                 <tr>
-                    <td>北京</td>
-                    <td>上海</td>
-                    <td>广州</td>
+                    <td @click="changeCity('北京')">北京</td>
+                    <td @click="changeCity('上海')">上海</td>
+                    <td @click="changeCity('广州')">广州</td>
                 </tr>
                 <tr>
-                    <td>北京</td>
-                    <td>上海</td>
-                    <td>广州</td>
+                    <td @click="changeCity('北京')">北京</td>
+                    <td @click="changeCity('上海')">上海</td>
+                    <td @click="changeCity('广州')">广州</td>
                 </tr>
-              
-
             </table>
         </div>
     </div>
