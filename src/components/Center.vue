@@ -7,11 +7,58 @@ const wind_scale = ref(null);
 const wind_direction = ref(null);
 const pressure = ref(null);
 const humidity = ref(null);
+const weatherimg = ref(null)
 async function fun2(){
     await axios({
         url:'https://api.seniverse.com/v3/weather/now.json?key=SfG87iro5XUCJp97J&location=guangzhou',
         method:'GET', 
     }).then((res)=>{
+            // 处理图片
+            const weatherimgmap = {
+            0:"0@1x.png",
+            1:"1@1x.png",
+            2:"2@1x.png",
+            3:"3@1x.png",
+            4:"4@1x.png",
+            5:"5@1x.png",
+            6:"6@1x.png",
+            7:"7@1x.png",
+            8:"8@1x.png",
+            9:"9@1x.png",
+            10:"10@1x.png",
+            11:"11@1x.png",
+            12:"12@1x.png",
+            13:"13@1x.png",
+            14:"14@1x.png",
+            15:"15@1x.png",
+            16:"16@1x.png",
+            17:"17@1x.png",
+            18:"18@1x.png",
+            19:"19@1x.png",
+            20:"20@1x.png",
+            21:"21@1x.png",
+            22:"22@1x.png",
+            23:"23@1x.png",
+            24:"24@1x.png",
+            25:"25@1x.png",
+            26:"26@1x.png",
+            27:"27@1x.png",
+            28:"28@1x.png",
+            29:"29@1x.png",
+            30:"30@1x.png",
+            31:"31@1x.png",
+            32:"32@1x.png",
+            33:"33@1x.png",
+            34:"34@1x.png",
+            35:"35@1x.png",
+            36:"36@1x.png",
+            37:"37@1x.png",
+            38:"38@1x.png",
+            39:"39@1x.png",
+        }
+        // 图片
+        weatherimg.value = weatherimgmap[res.data.results[0].now.code]
+
         // 温度
         nowtemperature.value = res.data.results[0].now.temperature;
         // 天气
@@ -24,7 +71,7 @@ async function fun2(){
         pressure.value = res.data.results[0].now.pressure;
         // 湿度
         humidity.value = res.data.results[0].now.humidity;
-        // console.log(res.data);
+        console.log(res.data);
     }).catch((err)=>{
         console.log(err);
     })
@@ -35,7 +82,7 @@ fun2()
 <div>
         <div class="current-weather">
             <div class="weather-icon">
-                <div><img width="120px" height="120px" src="../img/CenterImg/晴朗.png" alt=""></div>
+                <div><img width="120px" height="120px" :src="weatherimg" alt=""></div>
             </div>
             <div class="temperature">{{ nowtemperature }}°</div>
             <div class="weather-desc">{{ text }}</div>
@@ -73,6 +120,11 @@ fun2()
             /* display: flex;
             flex-direction: column;
             align-items: center; */
+        }
+        .weather-icon div img{
+            text-align: center;
+            margin: 0 auto;
+           
         }
 
         .weather-icon {

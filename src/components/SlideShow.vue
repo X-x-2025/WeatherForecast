@@ -1,30 +1,10 @@
 <script setup>
 import axios from 'axios';
 import {ref} from 'vue';
-const temperature_00 = ref(null);
-const temperature_01 = ref(null);
-const temperature_02 = ref(null);
-const temperature_03 = ref(null);
-const temperature_04 = ref(null);
-const temperature_05 = ref(null);
-const temperature_06 = ref(null);
-const temperature_07 = ref(null);
-const temperature_08 = ref(null);
-const temperature_09 = ref(null);
-const temperature_10 = ref(null);
-const temperature_11 = ref(null);
-const temperature_12 = ref(null);
-const temperature_13 = ref(null);
-const temperature_14 = ref(null);
-const temperature_15 = ref(null);
-const temperature_16 = ref(null);
-const temperature_17 = ref(null);
-const temperature_18 = ref(null);
-const temperature_19 = ref(null);
-const temperature_20 = ref(null);
-const temperature_21 = ref(null);
-const temperature_22 = ref(null);
-const temperature_23 = ref(null);
+import { useCounterStore } from '../stores/counter';
+const user = useCountStore()
+const weatherimgarr = ref([]);
+const temperaturearr = ref([]);
 async function fun1(){
    
     await axios({
@@ -32,31 +12,59 @@ async function fun1(){
         method:'GET', 
     }).then((res)=>{
         // console.log(res.data);
-        temperature_00.value = res.data.results[0].hourly[0].temperature
-        temperature_01.value = res.data.results[0].hourly[1].temperature
-        temperature_02.value = res.data.results[0].hourly[2].temperature
-        temperature_03.value = res.data.results[0].hourly[3].temperature
-        temperature_04.value = res.data.results[0].hourly[4].temperature
-        temperature_05.value = res.data.results[0].hourly[5].temperature
-        temperature_06.value = res.data.results[0].hourly[6].temperature
-        temperature_07.value = res.data.results[0].hourly[7].temperature
-        temperature_08.value = res.data.results[0].hourly[8].temperature
-        temperature_09.value = res.data.results[0].hourly[9].temperature
-        temperature_10.value = res.data.results[0].hourly[10].temperature
-        temperature_11.value = res.data.results[0].hourly[11].temperature
-        temperature_12.value = res.data.results[0].hourly[12].temperature
-        temperature_13.value = res.data.results[0].hourly[13].temperature
-        temperature_14.value = res.data.results[0].hourly[14].temperature
-        temperature_15.value = res.data.results[0].hourly[15].temperature
-        temperature_16.value = res.data.results[0].hourly[16].temperature
-        temperature_17.value = res.data.results[0].hourly[17].temperature
-        temperature_18.value = res.data.results[0].hourly[18].temperature
-        temperature_19.value = res.data.results[0].hourly[19].temperature
-        temperature_20.value = res.data.results[0].hourly[20].temperature
-        temperature_21.value = res.data.results[0].hourly[21].temperature
-        temperature_22.value = res.data.results[0].hourly[22].temperature
-        temperature_23.value = res.data.results[0].hourly[23].temperature
-        // console.log(res.data.results[0].hourly[0].temperature);
+        for(let i = 0;i <= 23;i++){
+            // 处理图片
+            const weatherimgmap = {
+            0:"0@1x.png",
+            1:"1@1x.png",
+            2:"2@1x.png",
+            3:"3@1x.png",
+            4:"4@1x.png",
+            5:"5@1x.png",
+            6:"6@1x.png",
+            7:"7@1x.png",
+            8:"8@1x.png",
+            9:"9@1x.png",
+            10:"10@1x.png",
+            11:"11@1x.png",
+            12:"12@1x.png",
+            13:"13@1x.png",
+            14:"14@1x.png",
+            15:"15@1x.png",
+            16:"16@1x.png",
+            17:"17@1x.png",
+            18:"18@1x.png",
+            19:"19@1x.png",
+            20:"20@1x.png",
+            21:"21@1x.png",
+            22:"22@1x.png",
+            23:"23@1x.png",
+            24:"24@1x.png",
+            25:"25@1x.png",
+            26:"26@1x.png",
+            27:"27@1x.png",
+            28:"28@1x.png",
+            29:"29@1x.png",
+            30:"30@1x.png",
+            31:"31@1x.png",
+            32:"32@1x.png",
+            33:"33@1x.png",
+            34:"34@1x.png",
+            35:"35@1x.png",
+            36:"36@1x.png",
+            37:"37@1x.png",
+            38:"38@1x.png",
+            39:"39@1x.png",
+        }
+        const weatherimg = weatherimgmap[res.data.results[0].hourly[i].code]
+        // console.log(res.data.results[0].hourly[0].code);
+        weatherimgarr.value.push(weatherimg)
+        temperaturearr.value.push(res.data.results[0].hourly[i].temperature)
+
+        }
+        
+        // console.log(temperaturearr);
+
         
     }).catch((err)=>{
         console.log(err);
@@ -77,129 +85,133 @@ fun1()
         <div class="hourly-container">
             <div class="everyhour">
                 <div class="time">00:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[0]" alt=""></div>
+                <div class="temp">{{ temperaturearr[0] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">01:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[1]" alt=""></div>
+                <div class="temp">{{ temperaturearr[1] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">02:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[2]" alt=""></div>
+                <div class="temp">{{ temperaturearr[2] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">03:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[3]" alt=""></div>
+                <div class="temp">{{ temperaturearr[3] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">04:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[4]" alt=""></div>
+                <div class="temp">{{ temperaturearr[4] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">05:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[5]" alt=""></div>
+                <div class="temp">{{ temperaturearr[5] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">06:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[6]" alt=""></div>
+                <div class="temp">{{ temperaturearr[6] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">07:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[7]" alt=""></div>
+                <div class="temp">{{ temperaturearr[7] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">08:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[8]" alt=""></div>
+                <div class="temp">{{ temperaturearr[8] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">09:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[9]" alt=""></div>
+                <div class="temp">{{ temperaturearr[9] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">10:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[10]" alt=""></div>
+                <div class="temp">{{ temperaturearr[10] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">11:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[11]" alt=""></div>
+                <div class="temp">{{ temperaturearr[11] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">12:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[12]" alt=""></div>
+                <div class="temp">{{ temperaturearr[12] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">13:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[13]" alt=""></div>
+                <div class="temp">{{ temperaturearr[13] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">14:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[14]" alt=""></div>
+                <div class="temp">{{ temperaturearr[14] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">15:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[15]" alt=""></div>
+                <div class="temp">{{ temperaturearr[15] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">16:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[16]" alt=""></div>
+                <div class="temp">{{ temperaturearr[16] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">17:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[17]" alt=""></div>
+                <div class="temp">{{ temperaturearr[17] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">18:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[18]" alt=""></div>
+                <div class="temp">{{ temperaturearr[18] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">19:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">22°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[19]" alt=""></div>
+                <div class="temp">{{ temperaturearr[19] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">20:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[20]" alt=""></div>
+                <div class="temp">{{ temperaturearr[20] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">21:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[21]" alt=""></div>
+                <div class="temp">{{ temperaturearr[21] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">22:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[22]" alt=""></div>
+                <div class="temp">{{ temperaturearr[22] }}°</div>
             </div>
             <div class="everyhour">
                 <div class="time">23:00</div>
-                <div class="icon"><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
-                <div class="temp">{{ temperature_00 }}°</div>
+                <div class="icon"><img width="60px" height="60px" :src="weatherimgarr[23]" alt=""></div>
+                <div class="temp">{{ temperaturearr[23] }}°</div>
             </div>
            
         </div>
     </div>
 </template>
 <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         .hourly-list {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
@@ -236,12 +248,14 @@ fun1()
             flex-direction: column;
             align-items: center;
             min-width: 60px;
-            margin: 10px 12px;
+            margin: 12px 12px;
+            margin-bottom: 5px;
         }
 
         .hour-item .time {
+
             font-size: 14px;
-            margin-bottom: 8px;
+            margin:5px 5px; 
         }
 
         .hour-item .icon {

@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import axios  from 'axios';
+import { useCounterStore } from '../stores/counter';
+const user = useCountStore()
 
 const montharr = ref([]);
 const weekarr = ref([]);
@@ -19,13 +21,13 @@ async function fun3(){
         url:'https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=guangzhou&language=zh-Hans&unit=c&start=-1&days=7',
         method:'GET',
      }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // 处理天气代码
         const weathertextmap = {
-            0:'晴（国内城市白天晴）',
-            1:'晴（国内城市夜晚晴）',
-            2:'晴（国外城市白天晴）',
-            3:'晴（国外城市夜晚晴）',
+            0:'晴',
+            1:'晴',
+            2:'晴',
+            3:'晴',
             4:'多云',
             5:'晴间多云',
             6:'晴间多云',
@@ -65,46 +67,46 @@ async function fun3(){
         }
         // 处理天气图片
         const weatherimgmap = {
-            0:'../img/weatherimg/white/0@1x.png',
-            1:'../img/weatherimg/white/1@1x.png',
-            2:'../img/weatherimg/white/2@1x.png',
-            3:'../img/weatherimg/white/3@1x.png',
-            4:'../img/weatherimg/white/4@1x.png',
-            5:'../img/weatherimg/white/5@1x.png',
-            6:'../img/weatherimg/white/6@1x.png',
-            7:'../img/weatherimg/white/7@1x.png',
-            8:'../img/weatherimg/white/8@1x.png',
-            9:'../img/weatherimg/white/9@1x.png',
-            10:'../img/weatherimg/white/10@1x.png',
-            11:'../img/weatherimg/white/11@1x.png',
-            12:'../img/weatherimg/white/12@1x.png',
-            13:'../img/weatherimg/white/13@1x.png',
-            14:'../img/weatherimg/white/14@1x.png',
-            15:'../img/weatherimg/white/15@1x.png',
-            16:'../img/weatherimg/white/16@1x.png',
-            17:'../img/weatherimg/white/17@1x.png',
-            18:'../img/weatherimg/white/18@1x.png',
-            19:'../img/weatherimg/white/19@1x.png',
-            20:'../img/weatherimg/white/20@1x.png',
-            21:'../img/weatherimg/white/21@1x.png',
-            22:'../img/weatherimg/white/22@1x.png',
-            23:'../img/weatherimg/white/23@1x.png',
-            24:'../img/weatherimg/white/24@1x.png',
-            25:'../img/weatherimg/white/25@1x.png',
-            26:'../img/weatherimg/white/26@1x.png',
-            27:'../img/weatherimg/white/27@1x.png',
-            28:'../img/weatherimg/white/28@1x.png',
-            29:'../img/weatherimg/white/29@1x.png',
-            30:'../img/weatherimg/white/30@1x.png',
-            31:'../img/weatherimg/white/31@1x.png',
-            32:'../img/weatherimg/white/32@1x.png',
-            33:'../img/weatherimg/white/33@1x.png',
-            34:'../img/weatherimg/white/34@1x.png',
-            35:'../img/weatherimg/white/35@1x.png',
-            36:'../img/weatherimg/white/36@1x.png',
-            37:'../img/weatherimg/white/37@1x.png',
-            38:'../img/weatherimg/white/38@1x.png',
-            39:'../img/weatherimg/white/39@1x.png',
+            0:"0@1x.png",
+            1:"1@1x.png",
+            2:"2@1x.png",
+            3:"3@1x.png",
+            4:"4@1x.png",
+            5:"5@1x.png",
+            6:"6@1x.png",
+            7:"7@1x.png",
+            8:"8@1x.png",
+            9:"9@1x.png",
+            10:"10@1x.png",
+            11:"11@1x.png",
+            12:"12@1x.png",
+            13:"13@1x.png",
+            14:"14@1x.png",
+            15:"15@1x.png",
+            16:"16@1x.png",
+            17:"17@1x.png",
+            18:"18@1x.png",
+            19:"19@1x.png",
+            20:"20@1x.png",
+            21:"21@1x.png",
+            22:"22@1x.png",
+            23:"23@1x.png",
+            24:"24@1x.png",
+            25:"25@1x.png",
+            26:"26@1x.png",
+            27:"27@1x.png",
+            28:"28@1x.png",
+            29:"29@1x.png",
+            30:"30@1x.png",
+            31:"31@1x.png",
+            32:"32@1x.png",
+            33:"33@1x.png",
+            34:"34@1x.png",
+            35:"35@1x.png",
+            36:"36@1x.png",
+            37:"37@1x.png",
+            38:"38@1x.png",
+            39:"39@1x.png",
         }
         // 处理时间
         const datemap = {
@@ -176,21 +178,17 @@ async function fun3(){
         // console.log(lowarr);
         // console.log(dayweathertextarr);
         // console.log(nightweathertextarr);
-        
-        console.log(dayweatherimgarr);
-        console.log(nightweatherimgarr);
-        
-        
-        
-
+        // console.log(dayweatherimgarr);
+        // console.log(nightweatherimgarr);
      }
 
      ).catch((err) => {
         console.log(err);
      })
-
 }
 fun3()
+
+// console.log(dayweatherimgarr)
 
 </script>
 <template>
@@ -201,11 +199,11 @@ fun3()
             <div class="yesterday">昨天</div>
             <div class="date">{{ montharr[0] }} 月 {{ dayarr[0] }} 日</div>
             <div>{{ dayweathertextarr[0] }}</div>
-            <div><img src="../img/weatherimg/white/10@2x.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[0]" alt=""></div>
             <div>{{ higharr[0] }}°</div>
             <div>|</div>
             <div>{{ lowarr[0] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[0]" alt=""></div>
             <div>{{ nightweathertextarr[0] }}</div>
             <div>{{ wind_typearr[0] }}{{ wind_scalearr[0] }}级</div>
         </div>
@@ -213,11 +211,11 @@ fun3()
             <div class="yesterday">今天</div>
             <div class="date">{{ montharr[1] }} 月 {{ dayarr[1] }} 日</div>
             <div>{{ dayweathertextarr[1] }}</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[1]" alt=""></div>
             <div>{{ higharr[1] }}°</div>
             <div>|</div>
             <div>{{ lowarr[1] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[1]" alt=""></div>
             <div>{{ nightweathertextarr[1] }}</div>
             <div>{{ wind_typearr[1] }}{{ wind_scalearr[1] }}级</div>
         </div>
@@ -225,11 +223,11 @@ fun3()
             <div class="yesterday">明天</div>
             <div class="date">{{ montharr[2] }} 月 {{ dayarr[2] }} 日</div>
             <div>{{ dayweathertextarr[2] }}</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[2]" alt=""></div>
             <div>{{ higharr[2] }}°</div>
             <div>|</div>
             <div>{{ lowarr[2] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[2]" alt=""></div>
             <div>{{ nightweathertextarr[2] }}</div>
             <div>{{ wind_typearr[2] }}{{ wind_scalearr[2] }}级</div>
         </div>
@@ -237,11 +235,11 @@ fun3()
             <div class="yesterday">{{ weekarr[3] }}</div>
             <div class="date">{{ montharr[3] }} 月 {{ dayarr[3] }} 日</div>
             <div>{{ dayweathertextarr[3] }}</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[3]" alt=""></div>
             <div>{{ higharr[3] }}°</div>
             <div>|</div>
             <div>{{ lowarr[3] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[3]" alt=""></div>
             <div>{{ nightweathertextarr[3] }}</div>
             <div>{{ wind_typearr[3] }}{{ wind_scalearr[3] }}级</div>
         </div>
@@ -249,11 +247,11 @@ fun3()
             <div class="yesterday">{{ weekarr[4] }}</div>
             <div class="date">{{ montharr[4] }} 月 {{ dayarr[4] }} 日</div>
             <div>{{ dayweathertextarr[4] }}</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[4]" alt=""></div>
             <div>{{ higharr[4] }}°</div>
             <div>|</div>
             <div>{{ lowarr[4] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[4]" alt=""></div>
             <div>{{ nightweathertextarr[4] }}</div>
             <div>{{ wind_typearr[4] }}{{ wind_scalearr[4] }}级</div>
         </div>
@@ -261,11 +259,11 @@ fun3()
             <div class="yesterday">{{ weekarr[5] }}</div>
             <div class="date">{{ montharr[5] }} 月 {{ dayarr[5] }} 日</div>
             <div>{{ dayweathertextarr[5] }}</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[5]" alt=""></div>
             <div>{{ higharr[5] }}°</div>
             <div>|</div>
             <div>{{ lowarr[5] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[5]" alt=""></div>
             <div>{{ nightweathertextarr[5] }}</div>
             <div>{{ wind_typearr[5] }}{{ wind_scalearr[5] }}级</div>
         </div>
@@ -273,11 +271,11 @@ fun3()
             <div class="yesterday">{{ weekarr[6] }}</div>
             <div class="date">{{ montharr[6] }} 月 {{ dayarr[6] }} 日</div>
             <div>{{ dayweathertextarr[6] }}</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="dayweatherimgarr[6]" alt=""></div>
             <div>{{ higharr[6] }}°</div>
             <div>|</div>
             <div>{{ lowarr[6] }}°</div>
-            <div><img src="../img/SlideShowImg/c3c35fb9-e118-492e-8535-998df68960a3.png" alt=""></div>
+            <div><img width="60px" height="60px" :src="nightweatherimgarr[6]" alt=""></div>
             <div>{{ nightweathertextarr[6] }}</div>
             <div>{{ wind_typearr[6] }}{{ wind_scalearr[6] }}级</div>
         </div>
@@ -286,6 +284,10 @@ fun3()
 </template>
 
 <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         .daily-container {
             text-align: center;
             background: rgba(255, 255, 255, 0.15);

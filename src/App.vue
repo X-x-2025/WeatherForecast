@@ -19,7 +19,7 @@ import SlideShow from './components/SlideShow.vue';
 </template>
 <style>
 *{
-    background-color: white;
+    background-color:rgb(241, 245, 252);
     color: black;
 }
 </style>
