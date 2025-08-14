@@ -2,15 +2,18 @@
 import axios from 'axios';
 import {ref} from 'vue';
 import { useCounterStore } from '../stores/counter';
+import { watch } from 'vue';
+
 const user = useCounterStore()
 const weatherimgarr = ref([]);
 const temperaturearr = ref([]);
 async function fun1(){
-   
+    weatherimgarr.value = []
+    temperaturearr.value = []
     await axios({
         url:`https://api.seniverse.com/v3/weather/hourly.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=0&hours=24`,
         method:'GET', 
-    }).then((res)=>{
+    }).then((res) => {
         // console.log(res.data);
         for(let i = 0;i <= 23;i++){
             // 处理图片
@@ -66,11 +69,17 @@ async function fun1(){
         // console.log(temperaturearr);
 
         
-    }).catch((err)=>{
+    }).catch((err) =>{
         console.log(err);
     })
 }
 fun1()
+watch(() => user.city.value,() => {
+    console.log('城市已改变为',user.city.value);
+    fun1()
+})
+console.log(user.city);
+
 
 
 

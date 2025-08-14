@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import axios  from 'axios';
 import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
@@ -17,6 +17,18 @@ const dayweatherimgarr = ref([]);
 const nightweatherimgarr = ref([]);
 
 async function fun3(){
+    montharr.value = []
+    weekarr.value = []
+    dayarr.value = []
+    wind_typearr.value = []
+    wind_scalearr.value = []
+    higharr.value = []
+    lowarr.value = []
+    dayweathertextarr.value = []
+    nightweathertextarr.value = []
+    dayweatherimgarr.value = []
+    nightweatherimgarr.value = []
+
      await axios({
         url:`https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`,
         method:'GET',
@@ -187,6 +199,13 @@ async function fun3(){
      })
 }
 fun3()
+watch(() => user.city.value,() => {
+    console.log('城市已改变为',user.city.value);
+    fun3()
+})
+console.log(`API URL: https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`)
+
+
 
 // console.log(dayweatherimgarr)
 

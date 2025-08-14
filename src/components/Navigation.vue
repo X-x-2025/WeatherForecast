@@ -3,15 +3,20 @@ import {ref, watch} from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
+
 const user = useCounterStore()
-const changeCity = (data) => {
-    user.city = data
-}
-// watch(user.city,(newValue,oldValue) => {
-//     console.log(newValue);
-// })
+watch(() => user.city.value,(newValue) => {
+
+    console.log('城市已改变为',newValue);
+
+})
+
 console.log(user.city);
 
+function handleCityChange(cityName) {
+    console.log(`点击事件触发，城市更新为: ${cityName}`)
+    user.changeCity(cityName)
+}
 </script>
 <template>
     <div class="header">
@@ -28,19 +33,19 @@ console.log(user.city);
             <div>广州市</div>
             <table>
                 <tr>
-                    <td @click="changeCity('北京')">北京</td>
-                    <td @click="changeCity('上海')">上海</td>
-                    <td @click="changeCity('广州')">广州</td>
+                    <td @click="handleCityChange('北京')">北京</td>
+                    <td @click="handleCityChange('上海')">上海</td>
+                    <td @click="handleCityChange('广州')">广州</td>
                 </tr>
                 <tr>
-                    <td @click="changeCity('北京')">北京</td>
-                    <td @click="changeCity('上海')">上海</td>
-                    <td @click="changeCity('广州')">广州</td>
+                    <td @click="handleCityChange('北京')">北京</td>
+                    <td @click="handleCityChange('上海')">上海</td>
+                    <td @click="handleCityChange('广州')">广州</td>
                 </tr>
                 <tr>
-                    <td @click="changeCity('北京')">北京</td>
-                    <td @click="changeCity('上海')">上海</td>
-                    <td @click="changeCity('广州')">广州</td>
+                    <td @click="handleCityChange('北京')">北京</td>
+                    <td @click="handleCityChange('上海')">上海</td>
+                    <td @click="handleCityChange('广州')">广州</td>
                 </tr>
             </table>
         </div>
@@ -116,7 +121,7 @@ console.log(user.city);
             position: absolute;
             right: 15%;
             top: 95px;
-            width: 950%;
+            width: 300px;
             background: rgb(241, 245, 252);
             box-shadow: 0 2px 12px rgba(0,0,0,0.1);
             padding: 5px;

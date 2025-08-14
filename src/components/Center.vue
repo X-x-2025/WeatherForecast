@@ -78,8 +78,10 @@ async function fun2(){
         console.log(err);
     })
 }
+
 fun2()
-console.log(user.city);
+
+
 
 </script>
 <template>
