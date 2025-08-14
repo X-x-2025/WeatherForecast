@@ -199,11 +199,11 @@ async function fun3(){
      })
 }
 fun3()
-watch(() => user.city.value,() => {
-    console.log('城市已改变为',user.city.value);
+watch(() => user.city,() => {
+    // console.log('城市已改变为',user.city);
     fun3()
 })
-console.log(`API URL: https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`)
+// console.log(`API URL: https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`)
 
 
 

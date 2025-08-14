@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
 const nowtemperature = ref(null);
@@ -78,7 +78,9 @@ async function fun2(){
         console.log(err);
     })
 }
-
+watch(() => user.city,() => {
+    fun2()
+})
 fun2()
 
 

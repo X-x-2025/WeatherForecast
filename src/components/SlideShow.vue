@@ -74,8 +74,8 @@ async function fun1(){
     })
 }
 fun1()
-watch(() => user.city.value,() => {
-    console.log('城市已改变为',user.city.value);
+watch(() => user.city,() => {
+    console.log('城市已改变为',user.city);
     fun1()
 })
 console.log(user.city);

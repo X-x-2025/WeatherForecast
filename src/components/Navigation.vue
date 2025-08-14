@@ -3,20 +3,54 @@ import {ref, watch} from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
-
 const user = useCounterStore()
-watch(() => user.city.value,(newValue) => {
 
-    console.log('城市已改变为',newValue);
 
-})
+// async function fun6() {
+//     await axios({
+//         url:`https://api.seniverse.com/v3/location/search.json?key=SfG87iro5XUCJp97J&q=${user.city}`,
+//         method:'GET'
+//     }).then((res) => {
+//         console.log(res.data);
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// }
+// fun6()
 
-console.log(user.city);
-
-function handleCityChange(cityName) {
-    console.log(`点击事件触发，城市更新为: ${cityName}`)
-    user.changeCity(cityName)
+const cityNameDeal = (e) => {
+    console.log(e.target.value);
+        let timer = setTimeout(() => {
+            user.city = e.target.value
+        },1000)
+    
 }
+// 控制搜索框的显示与隐藏
+const control = ref(false);
+const display = () => {
+    control.value = true
+}
+const notdisplay = () => {
+    // 延时消失
+    let timer = setTimeout(() => {
+            control.value = false
+        },500)
+    // clearTimeout(timer)
+}
+
+
+
+// 测试
+// watch(() => user.city,(newValue) => {
+//     console.log('城市已改变为',newValue);
+// })
+// // console.log(user.city);
+// 改城市
+function handleCityChange(cityname) {
+    console.log(`点击事件触发，城市更新为:${cityname}`)
+    user.changeCity(cityname)
+}
+
 </script>
 <template>
     <div class="header">
@@ -27,10 +61,10 @@ function handleCityChange(cityName) {
         <a>无障碍浏览</a>
         </div>
         <div class="location">{{user.city}}<a href="">&nbsp;&nbsp;[添加关注]</a></div>
-        <input  ref="input" type="search">
-        <div  class="hidden">
+        <input @focus="display" @blur='notdisplay' @input="cityNameDeal" type="search">
+        <div v-if="control" class="hidden" >
             <h4>当前定位</h4>
-            <div>广州市</div>
+            <div>{{ user.city }}</div>
             <table>
                 <tr>
                     <td @click="handleCityChange('北京')">北京</td>
@@ -127,7 +161,7 @@ function handleCityChange(cityName) {
             padding: 5px;
             z-index: 1500;
             border-radius: 10px;
- 
+
         }
 
 </style>
