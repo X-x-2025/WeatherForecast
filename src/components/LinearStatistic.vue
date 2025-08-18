@@ -204,15 +204,17 @@ watch(() => user.city,() => {
     fun3()
 })
 // console.log(`API URL: https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`)
-
-
-
 // console.log(dayweatherimgarr)
 
 </script>
 <template>
     <div class="daily-container">
-     <div class="header"><ul><li>七日天气预报</li></ul><button>15日天气预报</button></div>
+     <div class="header">
+        <div class="title">七日天气预报</div>
+        <div class="empty"></div>
+        <a href="#">15日天气预报</a>
+    </div>
+   
      <div class="content">
         <div class="template">
             <div class="yesterday">昨天</div>
@@ -302,29 +304,53 @@ watch(() => user.city,() => {
    </div>
 </template>
 
-<style>
+<style scoped>
         *{
             margin: 0;
             padding: 0;
+            /* background-color: beige; */
         }
         .daily-container {
+            /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
             text-align: center;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 30px;
-            backdrop-filter: blur(10px);
+            /* backdrop-filter: blur(10px); */
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        .header{
-            display: flex;
-            justify-content: space-between;
         }
         .content{
             display: flex;
             justify-content: space-around;
             align-items: center;
+            /* background: linear-gradient(to bottom right,rgb(101,184,250),white); */
         }
+        .header{
+            /* background: linear-gradient(to bottom right,rgb(101,184,250),white); */
+            margin: 20px 20px;
+            /* margin-right: 200px; */
+            display: flex;
+            justify-content: space-between;
+        }
+        .empty{
+            flex: 8;
+        }
+
+        .title{
+            /* width: 300px; */
+            white-space: nowrap;
+            flex: 2;
+            list-style: none;
+            font-size: 20px;
+            /* margin-right: 100px; */
+        }
+        a{
+            flex: 1;
+        }
+
+
+       
 
 
 </style>

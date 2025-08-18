@@ -86,7 +86,7 @@ fun2()
 
 
 </script>
-<template>
+<template >
 <div>
         <div class="current-weather">
             <div class="weather-icon">
@@ -112,12 +112,13 @@ fun2()
         </div>
     </div>
 </template>
-<style>
+<style scoped>
     *{
         margin: 0;
         padding: 0;
     }
   .current-weather {
+            /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             padding: 25px;

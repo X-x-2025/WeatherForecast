@@ -1,47 +1,83 @@
 <script setup>
+import axios  from 'axios';
+import { useCounterStore } from '../stores/counter';
+import { ref, watch } from 'vue';
+const user = useCounterStore()
+const dress = ref(null);
+const dressadvise = ref(null);
+const umbrella = ref(null);
+const umbrellaadvise = ref(null);
+const sunscreen = ref(null);
+const sunscreenadvise = ref(null);
+const uv = ref(null);
+const uvadvise = ref(null);
 
+async function fun8() {
+    await axios({
+        url:`https://api.seniverse.com/v3/life/suggestion.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&days=5`,
+        method:'GET'
+    }).then((res) => {
+        // console.log(res.data);
+        dress.value = res.data.results[0].suggestion[0].dressing.brief;
+        dressadvise.value = res.data.results[0].suggestion[0].dressing.details;
+        umbrella.value = res.data.results[0].suggestion[0].umbrella.brief;
+        umbrellaadvise.value = res.data.results[0].suggestion[0].umbrella.details;
+        sunscreen.value = res.data.results[0].suggestion[0].sunscreen.brief;
+        sunscreenadvise.value = res.data.results[0].suggestion[0].sunscreen.details;
+        uv.value = res.data.results[0].suggestion[0].uv.brief;
+        uvadvise.value = res.data.results[0].suggestion[0].uv.details;
+        // console.log(dressadvise.value);
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+fun8()
+watch(() => user.city,() => {
+    fun8()
+})
 
 </script>
 <template>
     <div class="life-index">
             <div class="section-title">
-                <span>生活指数</span>
+                <div class="title">生活指数</div>
+                <div class="empty"></div>
             </div>
             <div class="index-container">
                 <div class="index-item">
                     <div class="advise-type">
                         <img width="30px" height="30px" src="../img/AdviseImg/生活用品.png" alt="">
-                        <span>穿衣指数</span>
+                        <span>穿衣建议</span>
                     </div>
-                        <div class="index-level">舒适</div>
-                        <div class="index-desc">建议穿薄外套、牛仔裤等服装</div>
+                        <div class="index-level">{{ dress }}</div>
+                        <div class="index-desc">{{ dressadvise }}</div>
                 </div>
 
                 <div class="index-item">
                     <div class="advise-type">
-                        <img width="30px" height="30px" src="../img/AdviseImg/生活用品.png" alt="">
-                        <span>穿衣指数</span>
+                        <img width="30px" height="30px" src="../img/AdviseImg/伞.png" alt="">
+                        <span>雨伞</span>
                     </div>
-                        <div class="index-level">舒适</div>
-                        <div class="index-desc">建议穿薄外套、牛仔裤等服装</div>
+                        <div class="index-level">{{ umbrella }}</div>
+                        <div class="index-desc">{{ umbrellaadvise }}</div>
                 </div>
 
                 <div class="index-item">
                     <div class="advise-type">
-                        <img width="30px" height="30px" src="../img/AdviseImg/生活用品.png" alt="">
-                        <span>穿衣指数</span>
+                        <img width="30px" height="30px" src="../img/AdviseImg/防晒.png" alt="">
+                        <span>防晒</span>
                     </div>
-                        <div class="index-level">舒适</div>
-                        <div class="index-desc">建议穿薄外套、牛仔裤等服装</div>
+                        <div class="index-level">{{ sunscreen }}</div>
+                        <div class="index-desc">{{ sunscreenadvise }}</div>
                 </div>
 
                 <div class="index-item">
                     <div class="advise-type">
-                        <img width="30px" height="30px" src="../img/AdviseImg/生活用品.png" alt="">
-                        <span>穿衣指数</span>
+                        <img width="30px" height="30px" src="../img/AdviseImg/紫外线.png" alt="">
+                        <span>紫外线</span>
                     </div>
-                        <div class="index-level">舒适</div>
-                        <div class="index-desc">建议穿薄外套、牛仔裤等服装</div>
+                        <div class="index-level">{{ uv }}</div>
+                        <div class="index-desc">{{ uvadvise }}</div>
                 </div>
                 </div>
     </div>
@@ -81,7 +117,7 @@
         }
 
         .index-level {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500;
             margin-bottom: 5px;
         }
@@ -91,8 +127,18 @@
             opacity: 0.9;
         }
         .advise-type img{
-           
             margin-right: 5px;
-
         }
+        .section-title{
+            display: flex;
+        }
+        .title{
+            margin: 15px 50px;
+            font-size: 20px;
+            flex: 1;
+        }
+        .empty{
+            flex: 9;
+        }
+
 </style>
