@@ -309,6 +309,7 @@ watch(() => user.city,() => {
             margin: 0;
             padding: 0;
             /* background-color: beige; */
+            background-color: transparent;
         }
         .daily-container {
             /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */

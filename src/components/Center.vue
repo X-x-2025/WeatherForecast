@@ -116,10 +116,13 @@ fun2()
     *{
         margin: 0;
         padding: 0;
+        background-color: transparent;
     }
   .current-weather {
             /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
-            background: rgba(255, 255, 255, 0.15);
+            z-index: 0;
+
+            /* background: rgba(255, 255, 255, 0.15); */
             border-radius: 20px;
             padding: 25px;
             text-align: center;
@@ -133,31 +136,36 @@ fun2()
         .weather-icon div img{
             text-align: center;
             margin: 0 auto;
+            background-color: transparent;
            
         }
 
         .weather-icon {
             font-size: 80px;
-            /* margin: 10px 0;
-             */
+            /* margin: 10px 0;*/
+            background-color: transparent;
+
         }
 
         .temperature {
             font-size: 64px;
             font-weight: 300;
             /* margin: 5px 0; */
+            background-color: transparent;
         }
 
         .weather-desc {
             font-size: 20px;
             /* margin-bottom: 15px; */
             margin-right:20px ;
+            background-color: transparent;
         }
 
         .weather-details {
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
+            background-color: transparent;
         }
 
         .detail-item {
@@ -165,5 +173,6 @@ fun2()
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
+            background-color: transparent;
         }       
 </style>

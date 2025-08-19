@@ -15,7 +15,7 @@ async function fun1() {
         method: 'GET',
     })
    .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         for (let i = 0; i <= 23; i++) {
             // 处理图片
             const weatherimgmap = {
@@ -240,9 +240,10 @@ const slideright = () => {
         *{
             margin: 0;
             padding: 0;
+            background-color: transparent;
         }
         .hourly-list {
-            background: rgba(255, 255, 255, 0.15);
+            /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 30px;

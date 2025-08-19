@@ -84,6 +84,12 @@ watch(() => user.city,() => {
 
 </template>
 <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+
         .life-index {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;

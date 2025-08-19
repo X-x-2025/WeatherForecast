@@ -1,5 +1,6 @@
 <script setup>
 import {ref, watch} from 'vue'
+// import { onMounted } from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
@@ -7,17 +8,6 @@ const user = useCounterStore()
 const control1 = ref(false);
 
 
-// async function fun6() {
-//     await axios({
-//         url:`https://api.seniverse.com/v3/location/search.json?key=SfG87iro5XUCJp97J&q=${user.city}`,
-//         method:'GET'
-//     }).then((res) => {
-//         console.log(res.data);
-//     }).catch((err) => {
-//         console.log(err);
-//     })
-// }
-// fun6()
 
 // 修改城市名
 const cityNameDeal = (e) => {
@@ -63,50 +53,77 @@ const mouseleaveFun = () => {
 
 }
 
-// 本地存储
-// 存
-localStorage.setItem(`1`,user.city)
-// 取
-const ku = ref([])
-const citydata = localStorage.getItem('1')
-// ku.value.push(citydata)
-// console.log(ku);
-// 删
-// localStorage.removeItem('age')
-
-// 测试
-// watch(() => user.city,(newValue) => {
-//     console.log('城市已改变为',newValue);
-// })
-// // console.log(user.city);
 
 // 改城市
 function handleCityChange(cityname) {
     console.log(`点击事件触发，城市更新为:${cityname}`)
     user.changeCity(cityname)
 }
+
 // 关注
+let val = 0;
 const attention = (cityname) => {
     ku.value.push(cityname)
     // console.log(ku);
+    val++
 }
+
+// 本地存储
+let number = 0
+watch(() => val, () => {
+    localStorage.setItem(number,user.city)
+    number++
+    console.log(number,localStorage.getItem('number'));
+
+    
+}
+ )
+
+// 清除本地存储
+ const clearlocation = () => {
+    localStorage.clear();
+ }
+
+ //  取出本地存储的城市
+
+const ku = ref([])
+ const getlocation = () => {
+    for(let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i); // 获取第i个键名
+        const value = localStorage.getItem(key); // 获取对应的值
+        ku.value.push(value)
+    }
+ }
+ getlocation()
+ console.log(ku.value[1]);
+
 </script>
 <template>
     <div class="header">
-        <div class="logo">天气预报</div>
+        <div class="logo">
+            <img style="margin-right: 5px;" height="45px" src="../img/NavigationImg/天气预报.png" alt="">
+            天气预报
+        </div>
         <div class="empty"></div>
         <div class="tenxun">
         </div>
-        <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
+            <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
+            <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
         <button @click="attention(user.city)">添加关注</button>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
             <table>
-                <tr><td>关注城市</td></tr>
-                <tr><td @click="handleCityChange(ku[ku.length-1])">{{ ku[ku.length-1] }}</td></tr>
-                <tr><td @click="handleCityChange(ku[ku.length-2])">{{ ku[ku.length-2] }}</td></tr>
+                <tr><td>已关注的城市</td></tr>
+                <tr>
+                    <td @click="handleCityChange()">{{ ku.value[1] }}</td>
+                    <td class="clear">清除</td>
+                </tr>
+                <tr>
+                    <td @click="handleCityChange()"></td>
+                    <td class="clear">清除</td>
+                </tr>
             </table>
         </div>
-        <input @focus="display" @blur='notdisplay' @input="cityNameDeal" type="search">
+        <input placeholder="请输入城市" @focus="display" @blur='notdisplay' @input="cityNameDeal" type="search">
         <br>
         <div v-if="control" class="hidden">
             <h4>当前定位</h4>
@@ -136,12 +153,14 @@ const attention = (cityname) => {
         *{
             margin: 0;
             padding: 0;
+            background-color: transparent;
         }
         .tenxun{
             flex: 5;
             /* padding:20px; */
         }
         .header{
+            background-color: transparent;
             display: flex;
             align-items: baseline; 
             padding: 15px 5%; 
@@ -160,7 +179,9 @@ const attention = (cityname) => {
         }
         .logo{
             flex: 2;
+            display: flex;
             font-size: 30px;
+            white-space: nowrap;
         }
         .location{
             flex: 5;
@@ -181,9 +202,13 @@ const attention = (cityname) => {
         }
 
         td {
+            /* width: 200px; */
             padding: 5px 5px;
             transition: all 0.3s;
             /* width: 100%; */
+        }
+        .claer{
+            white-space: nowrap;
         }
 
         td:hover {
@@ -196,7 +221,7 @@ const attention = (cityname) => {
         .hidden {
             position: absolute;
             right: 21%;
-            top: 95px;
+            top: 110px;
             width: 300px;
             background: rgb(241, 245, 252);
             box-shadow: 0 2px 12px rgba(0,0,0,0.1);
@@ -208,7 +233,7 @@ const attention = (cityname) => {
         .hidden1 {
             position: absolute;
             right: 41%;
-            top: 95px;
+            top: 110px;
             width: 300px;
             background: rgb(241, 245, 252);
             box-shadow: 0 2px 12px rgba(0,0,0,0.1);
