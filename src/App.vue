@@ -5,10 +5,6 @@ import LinearStatistic from './components/LinearStatistic.vue';
 import Navigation from './components/Navigation.vue';
 import SlideShow from './components/SlideShow.vue';
 
-
-
-
-
 </script>
 <template>
     <Navigation></Navigation>

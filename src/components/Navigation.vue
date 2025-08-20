@@ -1,13 +1,11 @@
 <script setup>
 import {ref, watch} from 'vue'
-// import { onMounted } from 'vue'
+import { onMounted } from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
 const control1 = ref(false);
-
-
 
 // 修改城市名
 const cityNameDeal = (e) => {
@@ -53,7 +51,6 @@ const mouseleaveFun = () => {
 
 }
 
-
 // 改城市
 function handleCityChange(cityname) {
     console.log(`点击事件触发，城市更新为:${cityname}`)
@@ -61,42 +58,50 @@ function handleCityChange(cityname) {
 }
 
 // 关注
-let val = 0;
+const ku = ref([])
+let cityname1 = ref('')
 const attention = (cityname) => {
-    ku.value.push(cityname)
-    // console.log(ku);
-    val++
+    localStorage.setItem('1', cityname+cityname1.value)
+    cityname1.value = cityname1.value+cityname
 }
 
-// 本地存储
-let number = 0
-watch(() => val, () => {
-    localStorage.setItem(number,user.city)
-    number++
-    console.log(number,localStorage.getItem('number'));
-
-    
-}
- )
 
 // 清除本地存储
- const clearlocation = () => {
+const clearlocation = () => {
     localStorage.clear();
- }
+}
 
- //  取出本地存储的城市
+//  取出本地存储的城市
+let str = ''
+const arr = ref([])
+const getlocation = () => {
+    watch(() => cityname1.value,(newValue,oldValue) => {
+        
+        if(oldValue == ''){
+            arr.value.push(newValue)
+        }
+         else{
+            str = newValue.substring(newValue.length  - (newValue.length - oldValue.length), newValue.length)
+            arr.value.push(str)
+        }
+        
+        
+        console.log(newValue,oldValue);
+        // console.log(str);
+        console.log(arr.value);
+        
+    })
+}
 
-const ku = ref([])
- const getlocation = () => {
-    for(let i = 0; i < localStorage.length; i++){
-        const key = localStorage.key(i); // 获取第i个键名
-        const value = localStorage.getItem(key); // 获取对应的值
-        ku.value.push(value)
-    }
- }
- getlocation()
- console.log(ku.value[1]);
-
+ 
+// const onMounted =() => {
+    getlocation()
+// }
+onMounted()
+//  clearlocation()
+//  console.log(ku.value);
+ console.log(localStorage.getItem('1'));
+ 
 </script>
 <template>
     <div class="header">
@@ -107,14 +112,16 @@ const ku = ref([])
         <div class="empty"></div>
         <div class="tenxun">
         </div>
-            <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
-            <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
+        <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
+        <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
         <button @click="attention(user.city)">添加关注</button>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
             <table>
-                <tr><td>已关注的城市</td></tr>
                 <tr>
-                    <td @click="handleCityChange()">{{ ku.value[1] }}</td>
+                    <td>已关注的城市</td>
+                </tr>
+                <tr>
+                    <td @click="handleCityChange()">{{ arr.value[0] }}</td>
                     <td class="clear">清除</td>
                 </tr>
                 <tr>
