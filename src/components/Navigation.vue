@@ -61,6 +61,8 @@ function handleCityChange(cityname) {
 // 清除本地存储
 const clearlocation = () => {
     localStorage.clear();
+    arr.value = []
+
 }
 
 // 关注
@@ -76,7 +78,8 @@ const attention = (cityname) => {
 // 取出存在本地的数据
 const getlocation = () => {
     const stored = localStorage.getItem('key');
-    arr.value = stored.split(',')
+    arr.value = stored ? stored.split(',') : [];
+
     // console.log(stored);
     // console.log(arr.value)
 }
@@ -91,8 +94,7 @@ watch(() => cityname1.value, (newValue, oldValue) => {
         arr.value = [...arr.value, newValue]; 
         // 同步更新存储
         localStorage.setItem('key', arr.value.join(',')); 
-    }
-    
+    }  
     console.log('监听了');
     console.log(arr.value);
 })
@@ -103,10 +105,9 @@ watch(() => cityname1.value, (newValue, oldValue) => {
 // })
 // console.log(arr.value);
 
+console.log(arr.value[0]);
 
 
-
- 
 </script>
 <template>
     <div class="header">
@@ -120,19 +121,17 @@ watch(() => cityname1.value, (newValue, oldValue) => {
         <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
         <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
         <button @click="attention(user.city)">添加关注</button>
-        <div @mouseover="mouseoverFun"  @mouseleave="mouseleaveFun" v-if="control1"
-            class="hidden1">
+        <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
             <table>
                 <tr>
-                    <td>已关注的城市</td>
+                    <td style="font-size: 20px;">已关注的城市</td>
                 </tr>
                 <tr>
-                    <td @click="handleCityChange(arr.value[0])">{{ arr.value[0] }}</td>
-                    <td class="clear">清除</td>
+                    <td @click="clearlocation">清除所有记录</td>
                 </tr>
-                <tr>
-                    <td @click="handleCityChange(arr.value[1])">{{ arr.value[1] }}</td>
-                    <td class="clear">清除</td>
+
+                <tr v-for="(city, index) in arr.slice()" :key="index">
+                    <td @click="handleCityChange(city)">{{ city }}</td>
                 </tr>
             </table>
         </div>
