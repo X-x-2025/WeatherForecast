@@ -7,12 +7,13 @@ import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
 const control1 = ref(false);
 
+
 // 修改城市名
-const cityNameDeal = (e) => {
-    console.log(e.target.value);
-        let timer = setTimeout(() => {
-            user.city = e.target.value
-        },1000)
+const inputValue = ref('')
+const submitCity = () => {
+    if (inputValue.value) {
+        user.city = inputValue.value;
+    }
 }
 // 控制搜索框的显示与隐藏
 const control = ref(false);
@@ -23,7 +24,7 @@ const notdisplay = () => {
     // 延时消失
     let timer = setTimeout(() => {
             control.value = false
-        },500)
+        },2000)
     // clearTimeout(timer)
 }
 
@@ -47,7 +48,7 @@ const mouseoverFun = () => {
 const mouseleaveFun = () => {
     const timer = setTimeout(() => {
         control1.value = false
-    },500)
+    },3000)
 
 }
 
@@ -135,7 +136,8 @@ console.log(arr.value[0]);
                 </tr>
             </table>
         </div>
-        <input placeholder="请输入城市" @focus="display" @blur='notdisplay' @input="cityNameDeal" type="search">
+        <input placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay' type="search">
+        <button @click="submitCity">提交</button>
         <br>
         <div v-if="control" class="hidden">
             <h4>当前定位</h4>
@@ -232,7 +234,7 @@ console.log(arr.value[0]);
         }
         .hidden {
             position: absolute;
-            right: 21%;
+            right: 23%;
             top: 110px;
             width: 300px;
             background: rgb(241, 245, 252);
@@ -244,7 +246,7 @@ console.log(arr.value[0]);
         }
         .hidden1 {
             position: absolute;
-            right: 41%;
+            right: 43%;
             top: 110px;
             width: 300px;
             background: rgb(241, 245, 252);
