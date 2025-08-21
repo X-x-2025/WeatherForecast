@@ -14,19 +14,21 @@ import SlideShow from './components/SlideShow.vue';
     <Advise></Advise>
 </template>
 <style>
-*{ 
+* {
     /* background-color:rgb(241, 245, 252);  */
     background-color: transparent;
     /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
-    color: black; 
+    color: black;
 }
+
 body {
     z-index: 10000;
-    background: linear-gradient(to bottom right,rgb(101,184,250),white);
+    background: linear-gradient(to bottom right, rgb(101, 184, 250), white);
     /* min-height: 100vh; */
     /* background-color:rgb(241, 245, 252);  */
 }
-#app{
+
+#app {
     /* z-index: 10000; */
     background: transparent;
     /* min-height: 100vh;  */

@@ -1,5 +1,5 @@
 <script setup>
-import {onBeforeMount, ref, watch} from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 import { onMounted, onUpdated } from 'vue'
 // const display = ref(false)
 import axios from 'axios'
@@ -23,8 +23,8 @@ const display = () => {
 const notdisplay = () => {
     // 延时消失
     let timer = setTimeout(() => {
-            control.value = false
-        },2000)
+        control.value = false
+    }, 2000)
     // clearTimeout(timer)
 }
 
@@ -34,12 +34,12 @@ const mouseenterFun1 = () => {
     control1.value = true
     // count = !count
     const timer = setTimeout(() => {
-      if(count == false){
-        const timer = setTimeout(() => {
-        mouseleaveFun()
-        },2000)
-    }
-    },2000)   
+        if (count == false) {
+            const timer = setTimeout(() => {
+                mouseleaveFun()
+            }, 2000)
+        }
+    }, 2000)
 }
 const mouseoverFun = () => {
     control1.value = true
@@ -48,7 +48,7 @@ const mouseoverFun = () => {
 const mouseleaveFun = () => {
     const timer = setTimeout(() => {
         control1.value = false
-    },3000)
+    }, 3000)
 
 }
 
@@ -73,7 +73,7 @@ const attention = (cityname) => {
 
     const currentcity = arr.value.includes(cityname) ? arr.value : [...arr.value, cityname];
     localStorage.setItem('key', currentcity.join(','));
-    cityname1.value = cityname; 
+    cityname1.value = cityname;
 }
 
 // 取出存在本地的数据
@@ -89,20 +89,20 @@ const getlocation = () => {
 // 监听关注
 watch(() => cityname1.value, (newValue, oldValue) => {
     // 过滤相同值和空值
-    if (!newValue || newValue === oldValue) 
-        return; 
+    if (!newValue || newValue === oldValue)
+        return;
     if (!arr.value.includes(newValue)) {
-        arr.value = [...arr.value, newValue]; 
+        arr.value = [...arr.value, newValue];
         // 同步更新存储
-        localStorage.setItem('key', arr.value.join(',')); 
-    }  
+        localStorage.setItem('key', arr.value.join(','));
+    }
     console.log('监听了');
     console.log(arr.value);
 })
 
 // console.log(arr.value); 
 // onMounted(() => {
-    getlocation()
+getlocation()
 // })
 // console.log(arr.value);
 
@@ -120,7 +120,7 @@ console.log(arr.value[0]);
         <div class="tenxun">
         </div>
         <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
-        <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
+        <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{ user.city }}</a>
         <button @click="attention(user.city)">添加关注</button>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
             <table>
@@ -164,102 +164,112 @@ console.log(arr.value[0]);
     </div>
 </template>
 <style scoped>
-        *{
-            margin: 0;
-            padding: 0;
-            background-color: transparent;
-        }
-        .tenxun{
-            flex: 5;
-            /* padding:20px; */
-        }
-        .header{
-            background-color: transparent;
-            display: flex;
-            align-items: baseline; 
-            padding: 15px 5%; 
-            gap: 20px;
-            /* margin: 0 20px; */
-        }
-        .empty{
-            flex:1
-        }
-        .logo {
-            flex: 1;
-            min-width: 120px;
-        }
-        .header div{
-            width: 150px;
-        }
-        .logo{
-            flex: 2;
-            display: flex;
-            font-size: 30px;
-            white-space: nowrap;
-        }
-        .location{
-            flex: 5;
-        }
-       
-       
-        /* 搜索框 */
-       
-        input[type="search"] {
-            padding: 8px 15px;
-            border-radius: 20px;
-            border: 1px solid #ddd;
-            flex: 1;
-        }
-        table {
-            width: 100%;
-            margin-top: 15px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
 
-        td {
-            /* width: 200px; */
-            padding: 5px 5px;
-            transition: all 0.3s;
-            /* width: 100%; */
-        }
-        .claer{
-            white-space: nowrap;
-        }
+.tenxun {
+    flex: 5;
+    /* padding:20px; */
+}
 
-        td:hover {
-            background:white;
-            cursor: pointer;
-        }
-        .hidden div {
-            margin: 0 auto;
-        }
-        .hidden {
-            position: absolute;
-            right: 23%;
-            top: 110px;
-            width: 300px;
-            background: rgb(241, 245, 252);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-            padding: 5px;
-            z-index: 1500;
-            border-radius: 10px;
+.header {
+    background-color: transparent;
+    display: flex;
+    align-items: baseline;
+    padding: 15px 5%;
+    gap: 20px;
+    /* margin: 0 20px; */
+}
 
-        }
-        .hidden1 {
-            position: absolute;
-            right: 43%;
-            top: 110px;
-            width: 300px;
-            background: rgb(241, 245, 252);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-            padding: 5px;
-            z-index: 1000;
-            border-radius: 10px;
-        }
+.empty {
+    flex: 1
+}
 
-</style>
-<style scoped>
+.logo {
+    flex: 1;
+    min-width: 120px;
+}
+
+.header div {
+    width: 150px;
+}
+
+.logo {
+    flex: 2;
+    display: flex;
+    font-size: 30px;
+    white-space: nowrap;
+}
+
+.location {
+    flex: 5;
+}
+
+
+/* 搜索框 */
+
+input[type="search"] {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    flex: 1;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+td {
+    /* width: 200px; */
+    padding: 5px 5px;
+    transition: all 0.3s;
+    /* width: 100%; */
+}
+
+.claer {
+    white-space: nowrap;
+}
+
+td:hover {
+    background: white;
+    cursor: pointer;
+}
+
+.hidden div {
+    margin: 0 auto;
+}
 
 .hidden {
-    width: 226px !important; 
+    position: absolute;
+    right: 23%;
+    top: 110px;
+    width: 300px;
+    background: rgb(241, 245, 252);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    z-index: 1500;
+    border-radius: 10px;
+
+}
+
+.hidden1 {
+    position: absolute;
+    right: 43%;
+    top: 110px;
+    width: 300px;
+    background: rgb(241, 245, 252);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    z-index: 1000;
+    border-radius: 10px;
+}
+</style>
+<style scoped>
+.hidden {
+    width: 226px !important;
 }
 </style>
