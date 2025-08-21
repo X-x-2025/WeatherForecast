@@ -1,6 +1,6 @@
 <script setup>
-import {ref, watch} from 'vue'
-import { onMounted } from 'vue'
+import {onBeforeMount, ref, watch} from 'vue'
+import { onMounted, onUpdated } from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
@@ -57,50 +57,55 @@ function handleCityChange(cityname) {
     user.changeCity(cityname)
 }
 
-// 关注
-const ku = ref([])
-let cityname1 = ref('')
-const attention = (cityname) => {
-    localStorage.setItem('1', cityname+cityname1.value)
-    cityname1.value = cityname1.value+cityname
-}
-
 
 // 清除本地存储
 const clearlocation = () => {
     localStorage.clear();
 }
 
-//  取出本地存储的城市
-let str = ''
+// 关注
 const arr = ref([])
-const getlocation = () => {
-    watch(() => cityname1.value,(newValue,oldValue) => {
-        
-        if(oldValue == ''){
-            arr.value.push(newValue)
-        }
-         else{
-            str = newValue.substring(newValue.length  - (newValue.length - oldValue.length), newValue.length)
-            arr.value.push(str)
-        }
-        
-        
-        console.log(newValue,oldValue);
-        // console.log(str);
-        console.log(arr.value);
-        
-    })
+let cityname1 = ref('')
+const attention = (cityname) => {
+
+    const currentcity = arr.value.includes(cityname) ? arr.value : [...arr.value, cityname];
+    localStorage.setItem('key', currentcity.join(','));
+    cityname1.value = cityname; 
 }
 
- 
-// const onMounted =() => {
+// 取出存在本地的数据
+const getlocation = () => {
+    const stored = localStorage.getItem('key');
+    arr.value = stored.split(',')
+    // console.log(stored);
+    // console.log(arr.value)
+}
+
+
+// 监听关注
+watch(() => cityname1.value, (newValue, oldValue) => {
+    // 过滤相同值和空值
+    if (!newValue || newValue === oldValue) 
+        return; 
+    if (!arr.value.includes(newValue)) {
+        arr.value = [...arr.value, newValue]; 
+        // 同步更新存储
+        localStorage.setItem('key', arr.value.join(',')); 
+    }
+    
+    console.log('监听了');
+    console.log(arr.value);
+})
+
+// console.log(arr.value); 
+// onMounted(() => {
     getlocation()
-// }
-onMounted()
-//  clearlocation()
-//  console.log(ku.value);
- console.log(localStorage.getItem('1'));
+// })
+// console.log(arr.value);
+
+
+
+
  
 </script>
 <template>
@@ -115,17 +120,18 @@ onMounted()
         <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
         <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{user.city}}</a>
         <button @click="attention(user.city)">添加关注</button>
-        <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
+        <div @mouseover="mouseoverFun"  @mouseleave="mouseleaveFun" v-if="control1"
+            class="hidden1">
             <table>
                 <tr>
                     <td>已关注的城市</td>
                 </tr>
                 <tr>
-                    <td @click="handleCityChange()">{{ arr.value[0] }}</td>
+                    <td @click="handleCityChange(arr.value[0])">{{ arr.value[0] }}</td>
                     <td class="clear">清除</td>
                 </tr>
                 <tr>
-                    <td @click="handleCityChange()"></td>
+                    <td @click="handleCityChange(arr.value[1])">{{ arr.value[1] }}</td>
                     <td class="clear">清除</td>
                 </tr>
             </table>
