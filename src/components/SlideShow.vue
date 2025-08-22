@@ -244,7 +244,8 @@ const slideright = () => {
 }
 
 .hourly-list {
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
+    background: linear-gradient(to bottom right,rgb(101,184,250),white );
+    background-color: rgba(211, 235, 253, 100);
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 30px;

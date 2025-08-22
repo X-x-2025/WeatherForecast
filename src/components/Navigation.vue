@@ -85,6 +85,12 @@ const getlocation = () => {
     // console.log(arr.value)
 }
 
+// 删除
+const deleteCity = (index) => {
+    arr.value.splice(index, 1);
+    localStorage.setItem('key', arr.value.join(','));
+}
+
 
 // 监听关注
 watch(() => cityname1.value, (newValue, oldValue) => {
@@ -119,7 +125,7 @@ console.log(arr.value[0]);
         <div class="empty"></div>
         <div class="tenxun">
         </div>
-        <!-- <img width="40px" height="40px" src="../img/NavigationImg/定位.png" alt=""> -->
+        <!-- <img width="40px" height="40px" margin-right="5px;" src="../img/NavigationImg/定位.png" alt=""> -->
         <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{ user.city }}</a>
         <button @click="attention(user.city)">添加关注</button>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
@@ -127,12 +133,20 @@ console.log(arr.value[0]);
                 <tr>
                     <td style="font-size: 20px;">已关注的城市</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td @click="clearlocation">清除所有记录</td>
-                </tr>
+                </tr> -->
 
-                <tr v-for="(city, index) in arr.slice()" :key="index">
-                    <td @click="handleCityChange(city)">{{ city }}</td>
+                <tr style="align-items: center; display: flex;justify-content: center;"
+                    v-for="(city, index) in arr.slice()" :key="index">
+
+                    <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 20px;"
+                        @click="handleCityChange(city)">{{ city
+                        }}&nbsp;&nbsp;&nbsp;
+                        <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
+                                style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt=""></button>
+
+                    </td>
                 </tr>
             </table>
         </div>
@@ -141,7 +155,10 @@ console.log(arr.value[0]);
         <br>
         <div v-if="control" class="hidden">
             <h4>当前定位</h4>
-            <div>广州</div>
+            <div style="display: flex; text-align: center; align-items: center; ">
+                <!-- <img style="width: 20px;" margin-right="5px;" src="../img/NavigationImg/定位.png" alt=""> -->
+                <div>广州</div>
+            </div>
             <p style="margin-top:8px;">热门城市</p>
             <table>
                 <tr>

@@ -117,13 +117,13 @@ fun2()
     margin: 0;
     padding: 0;
     background-color: transparent;
+    /* background-color:rgb(241, 245, 252);  */
 }
 
 .current-weather {
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
+    background: linear-gradient(to bottom right,rgb(101,184,250),white );
     z-index: 0;
-
-    /* background: rgba(255, 255, 255, 0.15); */
+    /* background: white; */
     border-radius: 20px;
     padding: 25px;
     text-align: center;
@@ -131,8 +131,8 @@ fun2()
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     /* display: flex;
-            flex-direction: column;
-            align-items: center; */
+    flex-direction: column;
+    align-items: center; */
 }
 
 .weather-icon div img {

@@ -313,9 +313,10 @@ watch(() => user.city, () => {
 }
 
 .daily-container {
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
+    background: linear-gradient(to bottom right,rgb(101,184,250),white );
     text-align: center;
-    background: rgba(255, 255, 255, 0.15);
+    /* background: rgba(255, 255, 255, 100); */
+    
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 30px;

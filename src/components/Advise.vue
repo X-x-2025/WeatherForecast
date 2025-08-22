@@ -91,7 +91,8 @@ watch(() => user.city, () => {
 }
 
 .life-index {
-    background: rgba(255, 255, 255, 0.15);
+    /* background: rgba(255, 255, 255, 0.15); */
+    background: linear-gradient(to bottom right, rgb(101, 184, 250), white);
     border-radius: 20px;
     padding: 20px;
     backdrop-filter: blur(10px);
