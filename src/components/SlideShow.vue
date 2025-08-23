@@ -11,7 +11,7 @@ async function fun1() {
     weatherimgarr.value = [];
     temperaturearr.value = [];
     await axios({
-        url: `https://api.seniverse.com/v3/weather/hourly.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=0&hours=24`,
+        url: `https://api.seniverse.com/v3/weather/hourly.json?key=SZ17KOUjoHofDseq4&location=${user.city}&language=zh-Hans&unit=c&start=0&hours=24`,
         method: 'GET',
     })
         .then((res) => {

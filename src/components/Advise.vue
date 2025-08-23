@@ -14,7 +14,7 @@ const uvadvise = ref(null);
 
 async function fun8() {
     await axios({
-        url: `https://api.seniverse.com/v3/life/suggestion.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&days=5`,
+        url: `https://api.seniverse.com/v3/life/suggestion.json?key=SZ17KOUjoHofDseq4&location=${user.city}&language=zh-Hans&days=5`,
         method: 'GET'
     }).then((res) => {
         // console.log(res.data);

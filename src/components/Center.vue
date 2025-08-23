@@ -12,7 +12,7 @@ const humidity = ref(null);
 const weatherimg = ref(null)
 async function fun2() {
     await axios({
-        url: `https://api.seniverse.com/v3/weather/now.json?key=SfG87iro5XUCJp97J&location=${user.city}`,
+        url: `https://api.seniverse.com/v3/weather/now.json?key=SZ17KOUjoHofDseq4&location=${user.city}`,
         method: 'GET',
     }).then((res) => {
         // 处理图片

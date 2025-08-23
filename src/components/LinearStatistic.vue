@@ -30,7 +30,7 @@ async function fun3() {
     nightweatherimgarr.value = []
 
     await axios({
-        url: `https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`,
+        url: `https://api.seniverse.com/v3/weather/daily.json?key=SZ17KOUjoHofDseq4&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`,
         method: 'GET',
     }).then((res) => {
         // console.log(res.data);
@@ -147,7 +147,6 @@ async function fun3() {
             12: '飓风',
         }
 
-
         for (let i = 0; i < 7; i++) {
             const date = new Date(res.data.results[0].daily[i].date)
             // console.log(res.data.results[0].daily[i].date);
@@ -179,7 +178,6 @@ async function fun3() {
             // 获取夜晚天气图片
             const Nightweatherimgarr = weatherimgmap[res.data.results[0].daily[i].code_night]
             nightweatherimgarr.value.push(Nightweatherimgarr)
-
         }
         // console.log(montharr);
         // console.log(weekarr);

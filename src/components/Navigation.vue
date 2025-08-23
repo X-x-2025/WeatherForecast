@@ -85,6 +85,7 @@ const getlocation = () => {
     arr.value = stored ? stored.split(',') : [];
     // 获取数组中每个元素的天气信息
     arr.value.forEach(city => fun(city));
+
 }
 
 // 删除
@@ -104,8 +105,11 @@ watch(() => cityname1.value, (newValue, oldValue) => {
         // 同步更新存储
         localStorage.setItem('key', arr.value.join(','));
     }
-    // console.log('监听了');
+    console.log('监听了');
     // console.log('arr.value是：'+arr.value);
+    // fun()
+    getlocation()
+
 })
 
 // console.log(arr.value); 
@@ -114,27 +118,66 @@ getlocation()
 // })
 // 获取天气信息函数
 const locationcitylist = ref([])
-const locationcitylist1 = ref([])
-let i = 0;
+// let i = 0;
 async function fun(city) {
     await axios({
-        url: `https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${city}&language=zh-Hans&unit=c&start=-1&days=7`,
-
+        url: `https://api.seniverse.com/v3/weather/daily.json?key=SZ17KOUjoHofDseq4&location=${city}&language=zh-Hans&unit=c&start=-1&days=7`,
         method: 'GET',
     }).then((res) => {
-        // 空值处理
-        if (!locationcitylist.value[i]) {
-            locationcitylist.value[i] = [];
+        const weatherimgmap = {
+            0: "0@1x.png",
+            1: "1@1x.png",
+            2: "2@1x.png",
+            3: "3@1x.png",
+            4: "4@1x.png",
+            5: "5@1x.png",
+            6: "6@1x.png",
+            7: "7@1x.png",
+            8: "8@1x.png",
+            9: "9@1x.png",
+            10: "10@1x.png",
+            11: "11@1x.png",
+            12: "12@1x.png",
+            13: "13@1x.png",
+            14: "14@1x.png",
+            15: "15@1x.png",
+            16: "16@1x.png",
+            17: "17@1x.png",
+            18: "18@1x.png",
+            19: "19@1x.png",
+            20: "20@1x.png",
+            21: "21@1x.png",
+            22: "22@1x.png",
+            23: "23@1x.png",
+            24: "24@1x.png",
+            25: "25@1x.png",
+            26: "26@1x.png",
+            27: "27@1x.png",
+            28: "28@1x.png",
+            29: "29@1x.png",
+            30: "30@1x.png",
+            31: "31@1x.png",
+            32: "32@1x.png",
+            33: "33@1x.png",
+            34: "34@1x.png",
+            35: "35@1x.png",
+            36: "36@1x.png",
+            37: "37@1x.png",
+            38: "38@1x.png",
+            39: "39@1x.png",
         }
-        locationcitylist.value[i].push({
+        console.log(res.data)
+        locationcitylist.value.push({
             high: res.data.results[0].daily[1].high,
             low: res.data.results[0].daily[1].low,
-            weatherimg: res.data.results[0].daily[1].icon,
+            weatherimg: weatherimgmap[res.data.results[0].daily[1].code_day],
         })
     })
-    locationcitylist1.value[i] = locationcitylist.value[i][0]
-
-    console.log(locationcitylist1.value);
+    
+    // higharr.value.push(locationcitylist.value[i][i].high)
+    console.log(1);
+    
+    
 
 }
 
@@ -168,7 +211,9 @@ async function fun(city) {
 
                     <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 20px;"
                         @click="handleCityChange(city)">
-                        {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index]}}/°&nbsp;&nbsp;&nbsp;
+                        {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index].low }}°/{{
+                        locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
+
                         <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
                                 style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt=""></button>
                     </td>
@@ -261,12 +306,12 @@ input[type="search"] {
 }
 
 table {
-    width: 100%;
+    width: 226px;
     margin-top: 15px;
 }
 
 td {
-    width: 200px;
+    width: 226px;
     padding: 5px 5px;
     transition: all 0.3s;
     /* width: 100%; */
@@ -277,19 +322,22 @@ td {
 }
 
 td:hover {
+    width: 226px;
     background: white;
     cursor: pointer;
 }
 
 .hidden div {
+    /* width: 300px; */
     margin: 0 auto;
 }
+
 
 .hidden {
     position: absolute;
     right: 23%;
     top: 110px;
-    width: 300px;
+    width: 226px;
     background: rgb(241, 245, 252);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 5px;
@@ -302,7 +350,7 @@ td:hover {
     position: absolute;
     right: 43%;
     top: 110px;
-    width: 200px;
+    /* width: 300px; */
     background: rgb(241, 245, 252);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 5px;
