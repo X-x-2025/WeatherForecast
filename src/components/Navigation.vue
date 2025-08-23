@@ -108,6 +108,7 @@ watch(() => cityname1.value, (newValue, oldValue) => {
     console.log('监听了');
     // console.log('arr.value是：'+arr.value);
     // fun()
+    // 更新温度
     getlocation()
 
 })
@@ -308,6 +309,7 @@ input[type="search"] {
 table {
     width: 226px;
     margin-top: 15px;
+    border-radius: 10px;
 }
 
 td {
@@ -315,6 +317,7 @@ td {
     padding: 5px 5px;
     transition: all 0.3s;
     /* width: 100%; */
+    border-radius: 10px;
 }
 
 .claer {
@@ -348,7 +351,7 @@ td:hover {
 
 .hidden1 {
     position: absolute;
-    right: 43%;
+    right: 42%;
     top: 110px;
     width: 226px;
     background: rgb(241, 245, 252);
