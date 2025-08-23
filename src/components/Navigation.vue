@@ -1,11 +1,14 @@
 <script setup>
-import { onBeforeMount, ref, watch } from 'vue'
+import { onBeforeMount, ref, watch, toRaw } from 'vue'
+
 import { onMounted, onUpdated } from 'vue'
 // const display = ref(false)
 import axios from 'axios'
 import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
 const control1 = ref(false);
+
+
 
 
 // 修改城市名
@@ -70,7 +73,6 @@ const clearlocation = () => {
 const arr = ref([])
 let cityname1 = ref('')
 const attention = (cityname) => {
-
     const currentcity = arr.value.includes(cityname) ? arr.value : [...arr.value, cityname];
     localStorage.setItem('key', currentcity.join(','));
     cityname1.value = cityname;
@@ -79,10 +81,10 @@ const attention = (cityname) => {
 // 取出存在本地的数据
 const getlocation = () => {
     const stored = localStorage.getItem('key');
+    // 把存在本地的数据取出（空值取[]）
     arr.value = stored ? stored.split(',') : [];
-
-    // console.log(stored);
-    // console.log(arr.value)
+    // 获取数组中每个元素的天气信息
+    arr.value.forEach(city => fun(city));
 }
 
 // 删除
@@ -102,18 +104,43 @@ watch(() => cityname1.value, (newValue, oldValue) => {
         // 同步更新存储
         localStorage.setItem('key', arr.value.join(','));
     }
-    console.log('监听了');
-    console.log(arr.value);
+    // console.log('监听了');
+    // console.log('arr.value是：'+arr.value);
 })
 
 // console.log(arr.value); 
 // onMounted(() => {
 getlocation()
 // })
+// 获取天气信息函数
+const locationcitylist = ref([])
+const locationcitylist1 = ref([])
+let i = 0;
+async function fun(city) {
+    await axios({
+        url: `https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${city}&language=zh-Hans&unit=c&start=-1&days=7`,
+
+        method: 'GET',
+    }).then((res) => {
+        // 空值处理
+        if (!locationcitylist.value[i]) {
+            locationcitylist.value[i] = [];
+        }
+        locationcitylist.value[i].push({
+            high: res.data.results[0].daily[1].high,
+            low: res.data.results[0].daily[1].low,
+            weatherimg: res.data.results[0].daily[1].icon,
+        })
+    })
+    locationcitylist1.value[i] = locationcitylist.value[i][0]
+
+    console.log(locationcitylist1.value);
+
+}
+
+
+
 // console.log(arr.value);
-
-console.log(arr.value[0]);
-
 
 </script>
 <template>
@@ -129,23 +156,21 @@ console.log(arr.value[0]);
         <a style="font-size: 20px;" class="location" @mouseenter="mouseenterFun1">{{ user.city }}</a>
         <button @click="attention(user.city)">添加关注</button>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
-            <table>
+            <table style="width: 100%;">
                 <tr>
-                    <td style="font-size: 20px;">已关注的城市</td>
+                    <td style=" font-size: 20px;">已关注的城市</td>
                 </tr>
-                <!-- <tr>
+                <tr>
                     <td @click="clearlocation">清除所有记录</td>
-                </tr> -->
-
+                </tr>
                 <tr style="align-items: center; display: flex;justify-content: center;"
                     v-for="(city, index) in arr.slice()" :key="index">
 
                     <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 20px;"
-                        @click="handleCityChange(city)">{{ city
-                        }}&nbsp;&nbsp;&nbsp;
+                        @click="handleCityChange(city)">
+                        {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index]}}/°&nbsp;&nbsp;&nbsp;
                         <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
                                 style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt=""></button>
-
                     </td>
                 </tr>
             </table>
@@ -211,7 +236,7 @@ console.log(arr.value[0]);
 }
 
 .header div {
-    width: 150px;
+    width: 220px;
 }
 
 .logo {
@@ -241,7 +266,7 @@ table {
 }
 
 td {
-    /* width: 200px; */
+    width: 200px;
     padding: 5px 5px;
     transition: all 0.3s;
     /* width: 100%; */
@@ -277,7 +302,7 @@ td:hover {
     position: absolute;
     right: 43%;
     top: 110px;
-    width: 300px;
+    width: 200px;
     background: rgb(241, 245, 252);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 5px;
