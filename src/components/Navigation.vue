@@ -281,7 +281,7 @@ async function fun(city) {
 }
 
 .header div {
-    width: 220px;
+    width: 226px;
 }
 
 .logo {
@@ -350,10 +350,10 @@ td:hover {
     position: absolute;
     right: 43%;
     top: 110px;
-    /* width: 300px; */
+    width: 226px;
     background: rgb(241, 245, 252);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    padding: 5px;
+    /* padding: 5px; */
     z-index: 1000;
     border-radius: 10px;
 }
