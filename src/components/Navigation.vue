@@ -174,11 +174,11 @@ async function fun(city) {
             weatherimg: weatherimgmap[res.data.results[0].daily[1].code_day],
         })
     })
-    
+
     // higharr.value.push(locationcitylist.value[i][i].high)
     console.log(1);
-    
-    
+
+
 
 }
 
@@ -195,11 +195,11 @@ async function fun(city) {
         </div>
         <div class="empty"></div>
         <div class="tenxun"></div>
-        <div style="display: flex; justify-content: center; align-items:end; ">
+        <div style="display: flex; justify-content: center; align-items:center; ">
             <img style="display: block;" width="30px" height="30px" margin-right="5px;"
                 src="../img/NavigationImg/定位.png" alt="">
             <a style="font-size: 20px;  margin-right: 50px;" class="location" @mouseenter="mouseenterFun1">{{ user.city
-                }}</a>
+            }}</a>
             <button style=" height: 30px; line-height: 30px; " @click="attention(user.city)">添加关注</button>
         </div>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
@@ -216,7 +216,7 @@ async function fun(city) {
                     <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 20px;"
                         @click="handleCityChange(city)">
                         {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index].low }}°/{{
-                        locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
+                            locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
 
                         <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
                                 style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt=""></button>
@@ -224,10 +224,9 @@ async function fun(city) {
                 </tr>
             </table>
         </div>
-        
-            <input style="margin: 0 auto;" placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay' type="search">
-            <button style="margin: 0 auto;" @click="submitCity">提交</button>
-        
+        <input style="margin: 0 auto;" placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay'
+            type="search">
+        <button @click="submitCity">提交</button>
         <br>
         <div v-if="control" class="hidden">
             <h4>当前定位</h4>
