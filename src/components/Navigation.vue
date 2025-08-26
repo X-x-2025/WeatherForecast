@@ -27,7 +27,7 @@ const notdisplay = () => {
     // 延时消失
     let timer = setTimeout(() => {
         control.value = false
-    }, 2000)
+    }, 100000)
     // clearTimeout(timer)
 }
 
@@ -40,9 +40,9 @@ const mouseenterFun1 = () => {
         if (count == false) {
             const timer = setTimeout(() => {
                 mouseleaveFun()
-            }, 2000)
+            }, 100000)
         }
-    }, 2000)
+    }, 100000)
 }
 const mouseoverFun = () => {
     control1.value = true
@@ -51,7 +51,7 @@ const mouseoverFun = () => {
 const mouseleaveFun = () => {
     const timer = setTimeout(() => {
         control1.value = false
-    }, 3000)
+    }, 100000)
 
 }
 
@@ -174,16 +174,9 @@ async function fun(city) {
             weatherimg: weatherimgmap[res.data.results[0].daily[1].code_day],
         })
     })
-
     // higharr.value.push(locationcitylist.value[i][i].high)
-    console.log(1);
-
-
-
+    
 }
-
-
-
 // console.log(arr.value);
 
 </script>
@@ -195,12 +188,12 @@ async function fun(city) {
         </div>
         <div class="empty"></div>
         <div class="tenxun"></div>
-        <div style="display: flex; justify-content: center; align-items:center; ">
+        <div style="display: flex; justify-content: center; align-items:center; align-content: center; ">
             <img style="display: block;" width="30px" height="30px" margin-right="5px;"
                 src="../img/NavigationImg/定位.png" alt="">
             <a style="font-size: 20px;  margin-right: 50px;" class="location" @mouseenter="mouseenterFun1">{{ user.city
-            }}</a>
-            <button style=" height: 30px; line-height: 30px; " @click="attention(user.city)">添加关注</button>
+                }}</a>
+            <button style=" height: 30px; line-height: 30px; outline: none; " @click="attention(user.city)">添加关注</button>
         </div>
         <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
             <table style="width: 100%;">
@@ -212,31 +205,29 @@ async function fun(city) {
                 </tr>
                 <tr style="align-items: center; display: flex;justify-content: center;"
                     v-for="(city, index) in arr.slice()" :key="index">
-
                     <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 20px;"
                         @click="handleCityChange(city)">
                         {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index].low }}°/{{
-                            locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
-
+                        locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
                         <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
                                 style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt=""></button>
                     </td>
                 </tr>
-            </table>
+            </table> 
         </div>
-        <input style="margin: 0 auto;" placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay'
-            type="search">
-        <button @click="submitCity">提交</button>
+        <div style=" display: flex; justify-content: center; align-items: center; align-content: center;margin: 0 auto; ">
+            <input style=" display: block; margin: 0 auto;"  placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay'
+                type="search">
+            <button style=" margin-left: 10px; height: 30px; line-height: 30px; display: block; white-space: nowrap; outline: none;"   @click="submitCity">提交</button>
+        </div>
         <br>
         <div v-if="control" class="hidden">
             <h4>当前定位</h4>
             <div style="display: flex; text-align: center; align-items: center; justify-content: center;">
-
                 <div style="display: flex; align-items: center; justify-content: center;">
-                    <!-- <img style=" display: block; width: 20px; margin-left: 65px;" margin-right="5px;"
-                        src="../img/NavigationImg/定位.png" alt=""> -->
-                    <div style="font-size: 20px; ">广州</div>
-
+                    <img style=" display: block; width: 20px; margin-left: 65px;" margin-right="5px;"
+                        src="../img/NavigationImg/定位.png" alt="">
+                    <div style="font-size: 20px; margin-left: -60px; ">广州</div>
                 </div>
             </div>
             <p style="margin-top:8px;">热门城市</p>
@@ -368,6 +359,13 @@ td:hover {
     /* padding: 5px; */
     z-index: 1000;
     border-radius: 10px;
+}
+
+button:active{
+    background: #2980b9;
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
 }
 </style>
 <style scoped>

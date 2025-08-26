@@ -218,11 +218,11 @@ watch(() => user.city, () => {
                 <div class="yesterday">昨天</div>
                 <div class="date">{{ montharr[0] }} 月 {{ dayarr[0] }} 日</div>
                 <div>{{ dayweathertextarr[0] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[0]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[0]" alt=""></div>
                 <div>{{ higharr[0] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[0] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[0]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[0]" alt=""></div>
                 <div>{{ nightweathertextarr[0] }}</div>
                 <div>{{ wind_typearr[0] }}{{ wind_scalearr[0] }}级</div>
             </div>
@@ -230,11 +230,12 @@ watch(() => user.city, () => {
                 <div class="yesterday">今天</div>
                 <div class="date">{{ montharr[1] }} 月 {{ dayarr[1] }} 日</div>
                 <div>{{ dayweathertextarr[1] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[1]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[1]" alt=""></div>
+
                 <div>{{ higharr[1] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[1] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[1]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[1]" alt=""></div>
                 <div>{{ nightweathertextarr[1] }}</div>
                 <div>{{ wind_typearr[1] }}{{ wind_scalearr[1] }}级</div>
             </div>
@@ -242,11 +243,13 @@ watch(() => user.city, () => {
                 <div class="yesterday">明天</div>
                 <div class="date">{{ montharr[2] }} 月 {{ dayarr[2] }} 日</div>
                 <div>{{ dayweathertextarr[2] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[2]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[2]" alt=""></div>
+
                 <div>{{ higharr[2] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[2] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[2]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[2]" alt=""></div>
+
                 <div>{{ nightweathertextarr[2] }}</div>
                 <div>{{ wind_typearr[2] }}{{ wind_scalearr[2] }}级</div>
             </div>
@@ -254,11 +257,13 @@ watch(() => user.city, () => {
                 <div class="yesterday">{{ weekarr[3] }}</div>
                 <div class="date">{{ montharr[3] }} 月 {{ dayarr[3] }} 日</div>
                 <div>{{ dayweathertextarr[3] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[3]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[3]" alt=""></div>
+
                 <div>{{ higharr[3] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[3] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[3]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[3]" alt=""></div>
+
                 <div>{{ nightweathertextarr[3] }}</div>
                 <div>{{ wind_typearr[3] }}{{ wind_scalearr[3] }}级</div>
             </div>
@@ -266,11 +271,13 @@ watch(() => user.city, () => {
                 <div class="yesterday">{{ weekarr[4] }}</div>
                 <div class="date">{{ montharr[4] }} 月 {{ dayarr[4] }} 日</div>
                 <div>{{ dayweathertextarr[4] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[4]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[4]" alt=""></div>
+
                 <div>{{ higharr[4] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[4] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[4]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[4]" alt=""></div>
+
                 <div>{{ nightweathertextarr[4] }}</div>
                 <div>{{ wind_typearr[4] }}{{ wind_scalearr[4] }}级</div>
             </div>
@@ -278,11 +285,13 @@ watch(() => user.city, () => {
                 <div class="yesterday">{{ weekarr[5] }}</div>
                 <div class="date">{{ montharr[5] }} 月 {{ dayarr[5] }} 日</div>
                 <div>{{ dayweathertextarr[5] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[5]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[5]" alt=""></div>
+
                 <div>{{ higharr[5] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[5] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[5]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[5]" alt=""></div>
+
                 <div>{{ nightweathertextarr[5] }}</div>
                 <div>{{ wind_typearr[5] }}{{ wind_scalearr[5] }}级</div>
             </div>
@@ -290,11 +299,13 @@ watch(() => user.city, () => {
                 <div class="yesterday">{{ weekarr[6] }}</div>
                 <div class="date">{{ montharr[6] }} 月 {{ dayarr[6] }} 日</div>
                 <div>{{ dayweathertextarr[6] }}</div>
-                <div><img width="60px" height="60px" :src="dayweatherimgarr[6]" alt=""></div>
+                <div class="icon"><img :src="dayweatherimgarr[6]" alt=""></div>
+
                 <div>{{ higharr[6] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[6] }}°</div>
-                <div><img width="60px" height="60px" :src="nightweatherimgarr[6]" alt=""></div>
+                <div class="icon"><img :src="nightweatherimgarr[6]" alt=""></div>
+
                 <div>{{ nightweathertextarr[6] }}</div>
                 <div>{{ wind_typearr[6] }}{{ wind_scalearr[6] }}级</div>
             </div>
@@ -352,5 +363,18 @@ watch(() => user.city, () => {
 
 a {
     flex: 1;
+}
+
+.icon{
+    width: 60px;
+    height: 60px;
+    
+}
+.icon img {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
