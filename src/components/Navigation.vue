@@ -27,7 +27,7 @@ const notdisplay = () => {
     // 延时消失
     let timer = setTimeout(() => {
         control.value = false
-    }, 100000)
+    }, 3000)
     // clearTimeout(timer)
 }
 
@@ -40,9 +40,9 @@ const mouseenterFun1 = () => {
         if (count == false) {
             const timer = setTimeout(() => {
                 mouseleaveFun()
-            }, 100000)
+            }, 3000)
         }
-    }, 100000)
+    }, 3000)
 }
 const mouseoverFun = () => {
     control1.value = true
@@ -51,7 +51,7 @@ const mouseoverFun = () => {
 const mouseleaveFun = () => {
     const timer = setTimeout(() => {
         control1.value = false
-    }, 100000)
+    }, 3000)
 
 }
 
