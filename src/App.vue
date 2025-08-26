@@ -24,10 +24,14 @@ import SlideShow from './components/SlideShow.vue';
 
 body {
     z-index: 10000;
-    background: linear-gradient(to bottom right, rgb(101, 184, 250), white);
+    /* background: linear-gradient(to bottom right, rgb(101, 184, 250), white); */
     /* background: linear-gradient(to bottom right, rgb(101, 184, 250), white); */
     /* min-height: 100vh; */
     background-color:rgb(241, 245, 252); 
+    background-image: url('./img/weatherimg/生成特定图片.png');
+    /* background-size: cover; */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 #app {
@@ -35,5 +39,6 @@ body {
     background: transparent;
     /* min-height: 100vh;  */
     /* overflow: hidden; */
+    
 }
 </style>

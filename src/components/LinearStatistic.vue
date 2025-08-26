@@ -322,7 +322,7 @@ watch(() => user.city, () => {
 }
 
 .daily-container {
-    background: linear-gradient(to bottom right,rgb(101,184,250),white );
+    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
     text-align: center;
     /* background: rgba(255, 255, 255, 100); */
     

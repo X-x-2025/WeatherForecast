@@ -121,7 +121,7 @@ fun2()
 }
 
 .current-weather {
-    background: linear-gradient(to bottom right,rgb(101,184,250),white );
+    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
     z-index: 0;
     /* background: white; */
     border-radius: 20px;
