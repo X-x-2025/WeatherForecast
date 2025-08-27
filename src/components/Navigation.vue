@@ -183,10 +183,10 @@ async function fun(city) {
 </script>
 <template>
     <div class="header">
-        <div class="logo">
-            <img style="margin-right: 5px; " height="45px" src="../img/NavigationImg/天气预报.png" alt="">
-            天气预报
-        </div>
+        <span class="logo">
+            <img src="../img/NavigationImg/天气预报.png" alt="">
+            <p>天气预报</p>
+        </span>
         <div>
             <img style="display: block; margin-bottom: -28px;" width="30px" height="30px"
                 src="../img/NavigationImg/定位.png" alt="">
@@ -219,7 +219,7 @@ async function fun(city) {
                         alt="">
                     <div style="font-size: 14px; margin-left: -98px; margin-bottom: 5px;">广州</div>
                 </div>
-                <p>热门城市</p>
+                <p class="hot">热门城市</p>
                 <table>
                     <tr>
                         <td @click="handleCityChange('北京')">北京</td>
@@ -239,9 +239,8 @@ async function fun(city) {
                 </table>
             </div>
         </div>
-
         <button
-            style=" margin-left: 10px; height: 30px; line-height: 30px; display: block; white-space: nowrap; outline: none;color: #fff;"
+            style="  margin-left: 10px; height: 30px; line-height: 30px; display: block; white-space: nowrap; outline: none;color: #fff;"
             @click="submitCity">提交</button>
 
     </div>
@@ -256,16 +255,11 @@ async function fun(city) {
     /* font: 12px / 18px Simsun, Helvetica, Arial, sans-serif; */
     /* color: #fff; */
 }
-
-.tenxun {
-    flex: 5;
-    /* padding:20px; */
-}
-
 .header {
     background-color: transparent;
     display: flex;
-    align-items: baseline;
+    justify-content: space-around;
+    align-items: center;
     padding: 15px 5%;
     gap: 20px;
     font-size: 14px;
@@ -278,18 +272,41 @@ async function fun(city) {
 }
 
 .logo {
-    flex: 2;
+    /* position: relative; */
+    /* margin: 0 auto; */
     display: flex;
+    align-items: center;
+    height: 45px;
+    flex: 2;
     font-size: 30px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     color: #fff;
+    text-align: start;
+}
+.logo p{
+    display: inline;
+    font-size: 30px;
+    color: #fff;
+    /* margin: 0 auto; */
+    /* text-align: start; */
+    /* margin-top: 10px; */
+}
+.logo img {
+    margin-right: 10px;
+    /* margin:auto 0; */
+    height:45px;
+    /* line-height: 45px; */
+    /* width: 45px; */
+    display: inline-block;
+    /* position: absolute;
+    left: -5%;
+    bottom: 0%; */
 }
 
-.location {
-    /* position: relative; */
-}
+
 
 input[type="search"] {
+    height: 39px;
     position: relative;
     padding: 8px 15px;
     border-radius: 20px;
@@ -327,9 +344,6 @@ td:hover {
     cursor: pointer;
 }
 
-
-
-
 .hidden {
     z-index: 1000;
     position: absolute;
@@ -349,7 +363,6 @@ td:hover {
 
 .hidden1 {
     z-index: 1000;
-
     position: absolute;
     top: 13%;
     background: #fff;
@@ -386,7 +399,7 @@ h4 {
     padding: 0 20px;
 }
 
-p {
+.hot {
     margin-bottom: 24px;
     float: left;
     /* margin-left: 20px; */
@@ -415,6 +428,5 @@ p {
 .input-container {
     position: relative;
     height: 39px;
-
 }
 </style>

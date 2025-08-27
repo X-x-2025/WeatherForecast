@@ -8,6 +8,7 @@ import SlideShow from './components/SlideShow.vue';
 </script>
 <template>
     <Navigation></Navigation>
+    <!-- <hr> -->
     <Center></Center>
     <SlideShow></SlideShow>
     <LinearStatistic></LinearStatistic>
