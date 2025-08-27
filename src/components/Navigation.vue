@@ -176,7 +176,7 @@ async function fun(city) {
         })
     })
     // higharr.value.push(locationcitylist.value[i][i].high)
-    
+
 }
 // console.log(arr.value);
 
@@ -184,30 +184,24 @@ async function fun(city) {
 <template>
     <div class="header">
         <div class="logo">
-            <img style="margin-right: 5px;  " height="45px" src="../img/NavigationImg/天气预报.png" alt="">
+            <img style="margin-right: 5px; " height="45px" src="../img/NavigationImg/天气预报.png" alt="">
             天气预报
         </div>
         <div>
             <img style="display: block; margin-bottom: -28px;" width="30px" height="30px"
                 src="../img/NavigationImg/定位.png" alt="">
             <a style="font-size: 20px;  margin-right: 50px; color: #fff;" class="location"
-                @mouseenter="mouseenterFun1">{{ user.city
-
-                }}</a>
-            <button style=" height: 30px; line-height: 30px; outline: none; color: #fff;"
-                @click="attention(user.city)">添加关注</button>
+                @mouseenter="mouseenterFun1">{{ user.city }}</a>
+            <button style=" outline: none; color: #fff;" @click="attention(user.city)">添加关注</button>
             <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
                 <table style="width: 100%;">
-
-                    <h4 style=" font-size: 14px; color: #9f9f9f;padding: 0 10px;">已关注的城市</h4>
-                    <span class="spanstyle" 
-                        @click="clearlocation">清除所有记录</span>
-
+                    <span style=" font-size: 14px; color:#9f9f9f; padding:0 10px;">已关注的城市</span>
+                    <span class="spanstyle" @click="clearlocation">清除所有记录</span>
                     <tr v-for="(city, index) in arr.slice()" :key="index">
                         <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 14px;"
                             @click="handleCityChange(city)">
                             {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index].low }}°/{{
-                            locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
+                                locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
                             <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
                                     style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt="">
                             </button>
@@ -221,8 +215,9 @@ async function fun(city) {
             <div v-if="control" class="hidden">
                 <h4>当前定位</h4>
                 <div style="display: flex; align-items: center;margin-left: 12px;">
-                    <img style="" width="24px" height="24px" src="../img/NavigationImg/定位.png" alt="">
-                    <div style="font-size: 14px; margin-left: -98px; ">广州</div>
+                    <img style="margin-bottom: 5px;" width="21px" height="21px" src="../img/NavigationImg/定位.png"
+                        alt="">
+                    <div style="font-size: 14px; margin-left: -98px; margin-bottom: 5px;">广州</div>
                 </div>
                 <p>热门城市</p>
                 <table>
@@ -277,6 +272,7 @@ async function fun(city) {
     color: #555;
     /* margin: 0 20px; */
 }
+
 .header div {
     width: 226px;
 }
@@ -299,6 +295,11 @@ input[type="search"] {
     border-radius: 20px;
     border: 1px solid #ddd;
     flex: 1;
+    color: #fff;
+}
+
+input[type="search"]::placeholder {
+    opacity: 0.8;
     color: #fff;
 }
 
@@ -358,13 +359,14 @@ td:hover {
 
 }
 
-button:active{
+button:active {
     background: #2980b9;
     transform: translateY(2px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
 }
-h4{
+
+h4 {
     /* height: 14px; */
     /* line-height: 14px; */
     /* cursor: pointer; */
@@ -372,38 +374,42 @@ h4{
     float: left;
     /* margin-left: 20px; */
     font-size: 12px;
-        color: #9f9f9f;
-        height: 12px;
-        line-height: 12px;
-        margin-bottom: 8px;
-        margin-top: 2px;
-        clear: both;
-        padding: 0 20px;
+    color: #9f9f9f;
+    height: 12px;
+    line-height: 12px;
+    margin-bottom: 8px;
+    margin-top: 2px;
+    clear: both;
+    padding: 0 20px;
 }
-p{
+
+p {
     margin-bottom: 24px;
-        float: left;
-        /* margin-left: 20px; */
-        font-size: 12px;
-        color: #9f9f9f;
-        height: 12px;
-        line-height: 12px;
-        margin-bottom: 8px;
-        margin-top: 2px;
-        clear: both;
-        padding: 0 20px;
+    float: left;
+    /* margin-left: 20px; */
+    font-size: 12px;
+    color: #9f9f9f;
+    height: 12px;
+    line-height: 12px;
+    margin-bottom: 8px;
+    margin-top: 2px;
+    clear: both;
+    padding: 0 20px;
 }
-.spanstyle{
-        width: 226px;
-        background: white;
-        cursor: pointer;
-        font-size: 14px;
-        color: #9f9f9f;
-        padding: 0 10px;
-        margin: 0 auto;
-        
+
+.spanstyle {
+    width: 226px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    color: #9f9f9f;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-top: 10px;
+
 }
-.input-container{
+
+.input-container {
     position: relative;
     height: 39px;
 

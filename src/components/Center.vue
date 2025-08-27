@@ -89,27 +89,31 @@ fun2()
 <template>
     <div>
         <div class="current-weather">
-            <div class="weather-icon">
-                <div><img width="120px" :src="weatherimg" alt=""></div>
+            <p class="weather-title">中央气象台发布</p>
+            <div class="box">
+                <div class="temperature">{{ nowtemperature }}°</div>
+                <div class="weather-desc">{{ text }}</div>
             </div>
-            <div class="temperature">{{ nowtemperature }}°</div>
-            <div class="weather-desc">{{ text }}</div>
 
             <div class="weather-details">
                 <div class="detail-item">
-                    <img width="30px" height="30px" src="../img/CenterImg/风.png" alt="">
+                    <img src="../img/CenterImg/风.png" alt="">
                     <span>{{ wind_direction }}风 {{ wind_scale }}级</span>
                 </div>
                 <div class="detail-item">
-                    <img width="30px" height="30px" src="../img/CenterImg/湿度.png" alt="">
+                    <img src="../img/CenterImg/湿度.png" alt="">
                     <span>湿度 {{ humidity }}%</span>
                 </div>
                 <div class="detail-item">
-                    <img width="30px" height="30px" src="../img/CenterImg/气压.png" alt="">
+                    <img src="../img/CenterImg/气压.png" alt="">
                     <span>气压 {{ pressure }} hPa</span>
                 </div>
             </div>
+            <div class="weather-icon">
+                <div><img width="120px" :src="weatherimg" alt=""></div>
+            </div>
         </div>
+
     </div>
 </template>
 <style scoped>
@@ -123,23 +127,21 @@ fun2()
 }
 
 .current-weather {
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
-    /* z-index: 0; */
-    /* background: white; */
+    /* width: 600px; */
+
+    position: relative;
     border-radius: 20px;
     padding: 25px;
-    text-align: center;
-    /* margin-bottom: 25px; */
-    /* backdrop-filter: blur(10px); */
+    /* text-align: center; */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    /* font: 12px / 18px Simsun, Helvetica, Arial, sans-serif; */
-    
+
+
 }
 
 .weather-icon div img {
+    position: absolute;
+    right: 15%;
+    top: 20%;
     text-align: center;
     margin: 0 auto;
     background-color: transparent;
@@ -154,20 +156,28 @@ fun2()
 }
 
 .temperature {
-    font-size: 64px;
-    font-weight: 300;
-    /* margin: 5px 0; */
-    background-color: transparent;
+
+    display: inline-block;
+    font-size: 86px;
+    color: #fff;
+    height: 86px;
+    line-height: 86px;
+    margin-left: -915px;
 }
 
 .weather-desc {
+    /* position: absolute; */
+    display: inline-block;
     font-size: 20px;
     /* margin-bottom: 15px; */
     margin-right: 20px;
     background-color: transparent;
+
 }
 
 .weather-details {
+    width: 600px;
+    margin-right: 400px;
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
@@ -175,10 +185,46 @@ fun2()
 }
 
 .detail-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: transparent;
+    position: relative;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    display: inline-block;
+    /* margin-left: 200px; */
+    margin-bottom: 200px;
+
+}
+
+.detail-item img {
+    /* display: inline-block; */
+    position: absolute;
+    right: 110%;
+    top: -15%;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.detail-item span {
+    display: block;
+    /* display: inline-block; */
+    text-align: center;
+    margin: 0 auto;
+}
+
+.weather-title {
+    /* display: inline-block; */
+    margin-left: -1000px;
+    font-size: 14px;
+    color: #fff;
+    opacity: .6;
+    height: 19px;
+    line-height: 19px;
+    margin-bottom: 20px;
+}
+
+.box {
+    position: relative;
 }
 </style>
