@@ -133,7 +133,7 @@ fun2()
     border-radius: 20px;
     padding: 25px;
     /* text-align: center; */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
 
 
 }
