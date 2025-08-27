@@ -66,7 +66,7 @@ function handleCityChange(cityname) {
 const clearlocation = () => {
     localStorage.clear();
     arr.value = []
-
+    getlocation()
 }
 
 // 关注
@@ -76,6 +76,7 @@ const attention = (cityname) => {
     const currentcity = arr.value.includes(cityname) ? arr.value : [...arr.value, cityname];
     localStorage.setItem('key', currentcity.join(','));
     cityname1.value = cityname;
+    getlocation()
 }
 
 // 取出存在本地的数据
@@ -183,79 +184,82 @@ async function fun(city) {
 <template>
     <div class="header">
         <div class="logo">
-            <img style="margin-right: 5px;" height="45px" src="../img/NavigationImg/天气预报.png" alt="">
+            <img style="margin-right: 5px;  " height="45px" src="../img/NavigationImg/天气预报.png" alt="">
             天气预报
         </div>
-        <div class="empty"></div>
-        <div class="tenxun"></div>
-        <div style="display: flex; justify-content: center; align-items:center; align-content: center; ">
-            <img style="display: block;" width="30px" height="30px" margin-right="5px;"
+        <div>
+            <img style="display: block; margin-bottom: -28px;" width="30px" height="30px"
                 src="../img/NavigationImg/定位.png" alt="">
-            <a style="font-size: 20px;  margin-right: 50px;" class="location" @mouseenter="mouseenterFun1">{{ user.city
+            <a style="font-size: 20px;  margin-right: 50px; color: #fff;" class="location"
+                @mouseenter="mouseenterFun1">{{ user.city
+
                 }}</a>
-            <button style=" height: 30px; line-height: 30px; outline: none; " @click="attention(user.city)">添加关注</button>
-        </div>
-        <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
-            <table style="width: 100%;">
-                <tr>
-                    <td style=" font-size: 20px;">已关注的城市</td>
-                </tr>
-                <tr>
-                    <td @click="clearlocation">清除所有记录</td>
-                </tr>
-                <tr style="align-items: center; display: flex;justify-content: center;"
-                    v-for="(city, index) in arr.slice()" :key="index">
-                    <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 20px;"
-                        @click="handleCityChange(city)">
-                        {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index].low }}°/{{
-                        locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
-                        <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
-                                style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt=""></button>
-                    </td>
-                </tr>
-            </table> 
-        </div>
-        <div style=" display: flex; justify-content: center; align-items: center; align-content: center;margin: 0 auto; ">
-            <input style=" display: block; margin: 0 auto;"  placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay'
-                type="search">
-            <button style=" margin-left: 10px; height: 30px; line-height: 30px; display: block; white-space: nowrap; outline: none;"   @click="submitCity">提交</button>
-        </div>
-        <br>
-        <div v-if="control" class="hidden">
-            <h4>当前定位</h4>
-            <div style="display: flex; text-align: center; align-items: center; justify-content: center;">
-                <div style="display: flex; align-items: center; justify-content: center;">
-                    <img style=" display: block; width: 20px; margin-left: 65px;" margin-right="5px;"
-                        src="../img/NavigationImg/定位.png" alt="">
-                    <div style="font-size: 20px; margin-left: -60px; ">广州</div>
-                </div>
+            <button style=" height: 30px; line-height: 30px; outline: none; color: #fff;"
+                @click="attention(user.city)">添加关注</button>
+            <div @mouseover="mouseoverFun" @mouseleave="mouseleaveFun" v-if="control1" class="hidden1">
+                <table style="width: 100%;">
+
+                    <h4 style=" font-size: 14px; color: #9f9f9f;padding: 0 10px;">已关注的城市</h4>
+                    <span class="spanstyle" 
+                        @click="clearlocation">清除所有记录</span>
+
+                    <tr v-for="(city, index) in arr.slice()" :key="index">
+                        <td style="align-items: center; display: flex;justify-content: center;line-height: 30px; font-size: 14px;"
+                            @click="handleCityChange(city)">
+                            {{ arr[index] }}&nbsp;&nbsp;&nbsp;{{ locationcitylist[index].low }}°/{{
+                            locationcitylist[index].high }}°&nbsp;&nbsp;&nbsp;
+                            <button @click.stop="deleteCity(index)"><img width="30px" height="30px"
+                                    style="line-height: 30px;  " src="../img/NavigationImg/垃圾桶.png" alt="">
+                            </button>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <p style="margin-top:8px;">热门城市</p>
-            <table>
-                <tr>
-                    <td @click="handleCityChange('北京')">北京</td>
-                    <td @click="handleCityChange('上海')">上海</td>
-                    <td @click="handleCityChange('广州')">广州</td>
-                </tr>
-                <tr>
-                    <td @click="handleCityChange('杭州')">杭州</td>
-                    <td @click="handleCityChange('南京')">南京</td>
-                    <td @click="handleCityChange('西安')">西安</td>
-                </tr>
-                <tr>
-                    <td @click="handleCityChange('重庆')">重庆</td>
-                    <td @click="handleCityChange('成都')">成都</td>
-                    <td @click="handleCityChange('郑州')">郑州</td>
-                </tr>
-            </table>
         </div>
+        <div class="input-container">
+            <input placeholder="请输入城市" v-model="inputValue" @focus="display" @blur='notdisplay' type="search">
+            <div v-if="control" class="hidden">
+                <h4>当前定位</h4>
+                <div style="display: flex; align-items: center;margin-left: 12px;">
+                    <img style="" width="24px" height="24px" src="../img/NavigationImg/定位.png" alt="">
+                    <div style="font-size: 14px; margin-left: -98px; ">广州</div>
+                </div>
+                <p>热门城市</p>
+                <table>
+                    <tr>
+                        <td @click="handleCityChange('北京')">北京</td>
+                        <td @click="handleCityChange('上海')">上海</td>
+                        <td @click="handleCityChange('广州')">广州</td>
+                    </tr>
+                    <tr>
+                        <td @click="handleCityChange('杭州')">杭州</td>
+                        <td @click="handleCityChange('南京')">南京</td>
+                        <td @click="handleCityChange('西安')">西安</td>
+                    </tr>
+                    <tr>
+                        <td @click="handleCityChange('重庆')">重庆</td>
+                        <td @click="handleCityChange('成都')">成都</td>
+                        <td @click="handleCityChange('郑州')">郑州</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <button
+            style=" margin-left: 10px; height: 30px; line-height: 30px; display: block; white-space: nowrap; outline: none;color: #fff;"
+            @click="submitCity">提交</button>
+
     </div>
+
 </template>
 <style scoped>
 * {
     margin: 0;
     padding: 0;
     background-color: transparent;
+    font-family: "PingFang SC", "Microsoft YaHei", Simsun, Helvetica, Arial, sans-serif;
+    /* font: 12px / 18px Simsun, Helvetica, Arial, sans-serif; */
+    /* color: #fff; */
 }
 
 .tenxun {
@@ -269,18 +273,10 @@ async function fun(city) {
     align-items: baseline;
     padding: 15px 5%;
     gap: 20px;
+    font-size: 14px;
+    color: #555;
     /* margin: 0 20px; */
 }
-
-.empty {
-    flex: 1
-}
-
-.logo {
-    flex: 1;
-    min-width: 120px;
-}
-
 .header div {
     width: 226px;
 }
@@ -290,32 +286,32 @@ async function fun(city) {
     display: flex;
     font-size: 30px;
     white-space: nowrap;
+    color: #fff;
 }
 
 .location {
-    flex: 5;
+    /* position: relative; */
 }
 
-
-/* 搜索框 */
-
 input[type="search"] {
+    position: relative;
     padding: 8px 15px;
     border-radius: 20px;
     border: 1px solid #ddd;
     flex: 1;
+    color: #fff;
 }
 
 table {
     width: 226px;
-    margin-top: 15px;
+    margin-top: 5px;
     border-radius: 10px;
 }
 
 td {
     width: 226px;
     padding: 5px 5px;
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
     /* width: 100%; */
     border-radius: 10px;
 }
@@ -330,35 +326,36 @@ td:hover {
     cursor: pointer;
 }
 
-.hidden div {
-    /* width: 300px; */
-    margin: 0 auto;
-}
+
 
 
 .hidden {
     position: absolute;
-    right: 23%;
-    top: 110px;
+    left: 10px;
+    top: 99%;
     width: 226px;
     background: rgb(241, 245, 252);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 5px;
-    z-index: 1500;
     border-radius: 10px;
+    font-size: 14px;
+    color: black;
+    margin-top: 4px;
+    padding: 20px 0 10px;
 
 }
 
 .hidden1 {
     position: absolute;
-    right: 40%;
-    top: 110px;
-    width: 226px;
+    top: 13%;
+    background: #fff;
     background: rgb(241, 245, 252);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    /* padding: 5px; */
-    z-index: 1000;
-    border-radius: 10px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
+    border-radius: 5px;
+    padding: 5px 0 10px;
+    font-size: 14px;
+    color: black;
+
 }
 
 button:active{
@@ -367,9 +364,48 @@ button:active{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
 }
-</style>
-<style scoped>
-.hidden {
-    width: 226px !important;
+h4{
+    /* height: 14px; */
+    /* line-height: 14px; */
+    /* cursor: pointer; */
+    margin-bottom: 24px;
+    float: left;
+    /* margin-left: 20px; */
+    font-size: 12px;
+        color: #9f9f9f;
+        height: 12px;
+        line-height: 12px;
+        margin-bottom: 8px;
+        margin-top: 2px;
+        clear: both;
+        padding: 0 20px;
+}
+p{
+    margin-bottom: 24px;
+        float: left;
+        /* margin-left: 20px; */
+        font-size: 12px;
+        color: #9f9f9f;
+        height: 12px;
+        line-height: 12px;
+        margin-bottom: 8px;
+        margin-top: 2px;
+        clear: both;
+        padding: 0 20px;
+}
+.spanstyle{
+        width: 226px;
+        background: white;
+        cursor: pointer;
+        font-size: 14px;
+        color: #9f9f9f;
+        padding: 0 10px;
+        margin: 0 auto;
+        
+}
+.input-container{
+    position: relative;
+    height: 39px;
+
 }
 </style>

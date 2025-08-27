@@ -274,10 +274,12 @@ const slideright = () => {
 }
 
 .title {
-    margin: 20px 50px;
-    flex: 1;
-    font-size: 20px;
-    /* margin-right: 100px; */
+    font-size: 18px;
+    color: #344665;
+    line-height: 25px;
+    height: 25px;
+    margin-bottom: 18px;
+    margin-left: 30px;
 }
 
 a {
@@ -319,12 +321,13 @@ a {
     margin-bottom: 5px;
 }
 
-.hour-item .time {
+ .time {
+    color: #8a9baf;
     font-size: 14px;
     margin: 5px 5px;
 }
 
-.hour-item .icon {
+ .icon {
     width: 60px;
     height: 60px;
     font-size: 24px;
@@ -353,7 +356,9 @@ a {
 
 .hour-item .temp {
     /* padding-top: 10px; */
-    font-size: 16px;
+    font-size: 18px;
+    color: #384c78;
+    
     font-weight: 500;
 }
 

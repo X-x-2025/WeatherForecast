@@ -224,7 +224,7 @@ watch(() => user.city, () => {
                 <div>{{ lowarr[0] }}°</div>
                 <div class="icon"><img :src="nightweatherimgarr[0]" alt=""></div>
                 <div>{{ nightweathertextarr[0] }}</div>
-                <div>{{ wind_typearr[0] }}{{ wind_scalearr[0] }}级</div>
+                <div class="wind">{{ wind_typearr[0] }}{{ wind_scalearr[0] }}级</div>
             </div>
             <div class="template">
                 <div class="yesterday">今天</div>
@@ -237,7 +237,8 @@ watch(() => user.city, () => {
                 <div>{{ lowarr[1] }}°</div>
                 <div class="icon"><img :src="nightweatherimgarr[1]" alt=""></div>
                 <div>{{ nightweathertextarr[1] }}</div>
-                <div>{{ wind_typearr[1] }}{{ wind_scalearr[1] }}级</div>
+                <div class="wind">{{ wind_typearr[1] }}{{ wind_scalearr[1] }}级</div>
+
             </div>
             <div class="template">
                 <div class="yesterday">明天</div>
@@ -251,7 +252,8 @@ watch(() => user.city, () => {
                 <div class="icon"><img :src="nightweatherimgarr[2]" alt=""></div>
 
                 <div>{{ nightweathertextarr[2] }}</div>
-                <div>{{ wind_typearr[2] }}{{ wind_scalearr[2] }}级</div>
+                <div class="wind">{{ wind_typearr[2] }}{{ wind_scalearr[2] }}级</div>
+
             </div>
             <div class="template">
                 <div class="yesterday">{{ weekarr[3] }}</div>
@@ -265,7 +267,7 @@ watch(() => user.city, () => {
                 <div class="icon"><img :src="nightweatherimgarr[3]" alt=""></div>
 
                 <div>{{ nightweathertextarr[3] }}</div>
-                <div>{{ wind_typearr[3] }}{{ wind_scalearr[3] }}级</div>
+                <div class="wind">{{ wind_typearr[3] }}{{ wind_scalearr[3] }}级</div>
             </div>
             <div class="template">
                 <div class="yesterday">{{ weekarr[4] }}</div>
@@ -279,7 +281,8 @@ watch(() => user.city, () => {
                 <div class="icon"><img :src="nightweatherimgarr[4]" alt=""></div>
 
                 <div>{{ nightweathertextarr[4] }}</div>
-                <div>{{ wind_typearr[4] }}{{ wind_scalearr[4] }}级</div>
+                <div class="wind">{{ wind_typearr[4] }}{{ wind_scalearr[4] }}级</div>
+
             </div>
             <div class="template">
                 <div class="yesterday">{{ weekarr[5] }}</div>
@@ -293,21 +296,20 @@ watch(() => user.city, () => {
                 <div class="icon"><img :src="nightweatherimgarr[5]" alt=""></div>
 
                 <div>{{ nightweathertextarr[5] }}</div>
-                <div>{{ wind_typearr[5] }}{{ wind_scalearr[5] }}级</div>
+                <div class="wind">{{ wind_typearr[5] }}{{ wind_scalearr[5] }}级</div>
             </div>
             <div class="template">
                 <div class="yesterday">{{ weekarr[6] }}</div>
                 <div class="date">{{ montharr[6] }} 月 {{ dayarr[6] }} 日</div>
                 <div>{{ dayweathertextarr[6] }}</div>
                 <div class="icon"><img :src="dayweatherimgarr[6]" alt=""></div>
-
                 <div>{{ higharr[6] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[6] }}°</div>
                 <div class="icon"><img :src="nightweatherimgarr[6]" alt=""></div>
-
                 <div>{{ nightweathertextarr[6] }}</div>
-                <div>{{ wind_typearr[6] }}{{ wind_scalearr[6] }}级</div>
+                <div class="wind">{{ wind_typearr[6] }}{{ wind_scalearr[6] }}级</div>
+
             </div>
         </div>
     </div>
@@ -325,7 +327,7 @@ watch(() => user.city, () => {
     /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
     text-align: center;
     /* background: rgba(255, 255, 255, 100); */
-    
+    color: #c2c2c2;
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 30px;
@@ -340,6 +342,7 @@ watch(() => user.city, () => {
     /* background: linear-gradient(to bottom right,rgb(101,184,250),white); */
 }
 
+
 .header {
     /* background: linear-gradient(to bottom right,rgb(101,184,250),white); */
     margin: 20px 20px;
@@ -353,12 +356,12 @@ watch(() => user.city, () => {
 }
 
 .title {
-    /* width: 300px; */
-    white-space: nowrap;
-    flex: 2;
-    list-style: none;
-    font-size: 20px;
-    /* margin-right: 100px; */
+    font-size: 18px;
+    color: #344665;
+    line-height: 25px;
+    height: 25px;
+    margin-bottom: 18px;
+    margin-left: 30px;
 }
 
 a {
@@ -368,6 +371,7 @@ a {
 .icon{
     width: 60px;
     height: 60px;
+    padding: 3px;
     
 }
 .icon img {
@@ -377,4 +381,22 @@ a {
     justify-content: center;
     align-items: center;
 }
+.yesterday {
+    font-size: 15px;
+    
+    line-height: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+.date{
+    padding: 3px;
+    color: #c2c2c2;
+    font-size: 15px;
+}
+.wind{
+    font-size: 15px;
+    color: #c2c2c2;
+    padding-top: 4px;
+}
+
 </style>

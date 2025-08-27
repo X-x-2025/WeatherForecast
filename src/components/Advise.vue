@@ -143,9 +143,12 @@ watch(() => user.city, () => {
 }
 
 .title {
-    margin: 15px 50px;
-    font-size: 20px;
-    flex: 1;
+    font-size: 18px;
+    color: #344665;
+    line-height: 25px;
+    height: 25px;
+    margin-bottom: 18px;
+    margin-left: 30px;
 }
 
 .empty {

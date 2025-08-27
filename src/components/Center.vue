@@ -90,7 +90,7 @@ fun2()
     <div>
         <div class="current-weather">
             <div class="weather-icon">
-                <div><img width="120px" height="120px" :src="weatherimg" alt=""></div>
+                <div><img width="120px" :src="weatherimg" alt=""></div>
             </div>
             <div class="temperature">{{ nowtemperature }}°</div>
             <div class="weather-desc">{{ text }}</div>
@@ -118,21 +118,25 @@ fun2()
     padding: 0;
     background-color: transparent;
     /* background-color:rgb(241, 245, 252);  */
+    /* font-family: "PingFang SC", "Microsoft YaHei", Simsun, Helvetica, Arial, sans-serif; */
+    color: #fff;
 }
 
 .current-weather {
     /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
-    z-index: 0;
+    /* z-index: 0; */
     /* background: white; */
     border-radius: 20px;
     padding: 25px;
     text-align: center;
     /* margin-bottom: 25px; */
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     /* display: flex;
     flex-direction: column;
     align-items: center; */
+    /* font: 12px / 18px Simsun, Helvetica, Arial, sans-serif; */
+    
 }
 
 .weather-icon div img {
