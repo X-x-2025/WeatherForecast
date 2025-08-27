@@ -331,6 +331,7 @@ td:hover {
 
 
 .hidden {
+    z-index: 1000;
     position: absolute;
     left: 10px;
     top: 99%;
@@ -347,6 +348,8 @@ td:hover {
 }
 
 .hidden1 {
+    z-index: 1000;
+
     position: absolute;
     top: 13%;
     background: #fff;
