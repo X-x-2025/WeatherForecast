@@ -1,9 +1,9 @@
 <script setup>
 import {defineProps} from 'vue'
 defineProps({
-    week: [String, Number],
-    month: [String, Number],
-    day: [String, Number],
+    week: String,
+    month: Number,
+    day: Number,
     dayWeatherText: String,
     dayWeatherImg: String,
     high: String,
