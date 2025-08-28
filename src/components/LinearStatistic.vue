@@ -16,7 +16,7 @@ const nightweathertextarr = ref([]);
 const dayweatherimgarr = ref([]);
 const nightweatherimgarr = ref([]);
 
-async function fun3() {
+async function getData() {
     montharr.value = []
     weekarr.value = []
     dayarr.value = []
@@ -196,10 +196,10 @@ async function fun3() {
         console.log(err);
     })
 }
-fun3()
+getData()
 watch(() => user.city, () => {
     // console.log('城市已改变为',user.city);
-    fun3()
+    getData()
 })
 // console.log(`API URL: https://api.seniverse.com/v3/weather/daily.json?key=SfG87iro5XUCJp97J&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`)
 // console.log(dayweatherimgarr)
@@ -210,7 +210,7 @@ watch(() => user.city, () => {
         <div class="header">
             <div class="title">七日天气预报</div>
             <div class="empty"></div>
-            <a href="#">15日天气预报</a>
+            <a href="https://www.nmc.cn/">15日天气预报</a>
         </div>
 
         <div class="content">
@@ -231,14 +231,12 @@ watch(() => user.city, () => {
                 <div class="date">{{ montharr[1] }} 月 {{ dayarr[1] }} 日</div>
                 <div>{{ dayweathertextarr[1] }}</div>
                 <div class="icon"><img :src="dayweatherimgarr[1]" alt=""></div>
-
                 <div>{{ higharr[1] }}°</div>
                 <div>|</div>
                 <div>{{ lowarr[1] }}°</div>
                 <div class="icon"><img :src="nightweatherimgarr[1]" alt=""></div>
                 <div>{{ nightweathertextarr[1] }}</div>
                 <div class="wind">{{ wind_typearr[1] }}{{ wind_scalearr[1] }}级</div>
-
             </div>
             <div class="template">
                 <div class="yesterday">明天</div>
@@ -316,13 +314,6 @@ watch(() => user.city, () => {
 </template>
 
 <style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    /* background-color: beige; */
-    background-color: transparent;
-}
-
 .daily-container {
     /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
     text-align: center;
@@ -333,6 +324,7 @@ watch(() => user.city, () => {
     margin-bottom: 30px;
     /* backdrop-filter: blur(10px); */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
 }
 
 .content {

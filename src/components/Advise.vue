@@ -12,7 +12,7 @@ const sunscreenadvise = ref(null);
 const uv = ref(null);
 const uvadvise = ref(null);
 
-async function fun8() {
+async function getData() {
     await axios({
         url: `https://api.seniverse.com/v3/life/suggestion.json?key=SZ17KOUjoHofDseq4&location=${user.city}&language=zh-Hans&days=5`,
         method: 'GET'
@@ -33,7 +33,7 @@ async function fun8() {
 }
 fun8()
 watch(() => user.city, () => {
-    fun8()
+    getData()
 })
 
 </script>

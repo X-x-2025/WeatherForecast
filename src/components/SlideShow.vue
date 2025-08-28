@@ -3,11 +3,12 @@ import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
 import { watch } from 'vue';
+import Hourly from './Hourly.vue';
 
 const user = useCounterStore();
 const weatherimgarr = ref([]);
 const temperaturearr = ref([]);
-async function fun1() {
+async function getData() {
     weatherimgarr.value = [];
     temperaturearr.value = [];
     await axios({
@@ -71,11 +72,15 @@ async function fun1() {
             console.log(err);
         });
 }
-fun1();
+getData();
 watch(() => user.city, () => {
     // console.log('城市已改变为', user.city);
-    fun1();
+    getData();
 });
+// watch(() => user.city, () => {
+//     // console.log('城市已改变为', user.city);
+//     getDate();
+// });
 // console.log(user.city);
 
 // 按钮操作
@@ -107,12 +112,17 @@ const slideright = () => {
             <div class="empty"></div>
             <div class="buttons">
                 <button style="outline: none;" class="left" @click="slideleft"><</button>
-                <button style="outline: none;" class="right" @click="slideright">></button>
+                        <button style="outline: none;" class="right" @click="slideright">></button>
             </div>
         </div>
 
         <div ref="container" class="hourly-container">
-            <div class="everyhour">
+            <Hourly v-for="(hour, index) in 24" :key="index" 
+            :time="`${hour}:00`"
+            :weatherImg="weatherimgarr[index]" 
+            :temperature="temperaturearr[index]">
+            </Hourly>
+            <!-- <div class="everyhour">
                 <div class="time">00:00</div>
                 <div class="icon"><img :src="weatherimgarr[0]" alt=""></div>
                 <div class="temp">{{ temperaturearr[0] }}°</div>
@@ -231,43 +241,28 @@ const slideright = () => {
                 <div class="time">23:00</div>
                 <div class="icon"><img :src="weatherimgarr[23]" alt=""></div>
                 <div class="temp">{{ temperaturearr[23] }}°</div>
-            </div>
-
+            </div>  -->
         </div>
     </div>
 </template>
 <style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-}
-
 .hourly-list {
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
-    /* background-color: rgba(211, 235, 253, 100); */
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 30px;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white); */
-    /* z-index: 100001; */
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
+    background-color: transparent;
 }
 
 .section-title {
     font-size: 20px;
     margin-bottom: 15px;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
 }
 
-.empty {
-    flex: 8;
-}
 
 .hourly-title {
     display: flex;
@@ -295,14 +290,12 @@ a {
 }
 
 .hourly-container {
-    /* background: linear-gradient(to bottom right,rgb(101,184,250),white ); */
     width: 1166px;
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
     padding: 10px 0;
     gap: 25px;
-    /* -ms-overflow-style: none; */
 }
 
 .hourly-container::-webkit-scrollbar {
@@ -332,8 +325,6 @@ a {
     height: 60px;
     font-size: 24px;
     margin-bottom: 5px;
-    /* margin-bottom: 10px; */
-    /* color: #FFD700; */
     object-fit:contain;
     display: flex;
     justify-content: center;
@@ -344,9 +335,6 @@ a {
 .hour-item .icon img {
     max-width: 100%;
     max-height: 100%;
-    /* width: 60px; */
-    /* height: 60px; */
-    /* object-fit: contain; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -355,10 +343,8 @@ a {
 
 
 .hour-item .temp {
-    /* padding-top: 10px; */
     font-size: 18px;
     color: #384c78;
-    
     font-weight: 500;
 }
 

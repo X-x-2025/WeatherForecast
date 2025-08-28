@@ -10,7 +10,7 @@ const wind_direction = ref(null);
 const pressure = ref(null);
 const humidity = ref(null);
 const weatherimg = ref(null)
-async function fun2() {
+async function getData() {
     await axios({
         url: `https://api.seniverse.com/v3/weather/now.json?key=SZ17KOUjoHofDseq4&location=${user.city}`,
         method: 'GET',
@@ -79,9 +79,9 @@ async function fun2() {
     })
 }
 watch(() => user.city, () => {
-    fun2()
+    getData()
 })
-fun2()
+getData()
 
 
 
@@ -117,21 +117,20 @@ fun2()
     </div>
 </template>
 <style scoped>
-* {
+*{
     margin: 0;
     padding: 0;
     background-color: transparent;
-    /* background-color:rgb(241, 245, 252);  */
-    /* font-family: "PingFang SC", "Microsoft YaHei", Simsun, Helvetica, Arial, sans-serif; */
     color: #fff;
-}
 
+}
 .current-weather {
     /* width: 600px; */
-
     position: relative;
     border-radius: 20px;
     padding: 25px;
+    background-color: transparent;
+    color: #fff;
     /* text-align: center; */
     /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
 
@@ -145,6 +144,7 @@ fun2()
     text-align: center;
     margin: 0 auto;
     background-color: transparent;
+    color: #fff;
 
 }
 
@@ -152,11 +152,9 @@ fun2()
     font-size: 80px;
     /* margin: 10px 0;*/
     background-color: transparent;
-
 }
 
 .temperature {
-
     display: inline-block;
     font-size: 86px;
     color: #fff;
@@ -172,6 +170,7 @@ fun2()
     /* margin-bottom: 15px; */
     margin-right: 20px;
     background-color: transparent;
+    color: #fff;
 
 }
 

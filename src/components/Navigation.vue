@@ -8,9 +8,6 @@ import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
 const control1 = ref(false);
 
-
-
-
 // 修改城市名
 const inputValue = ref('')
 const submitCity = () => {
@@ -85,7 +82,7 @@ const getlocation = () => {
     // 把存在本地的数据取出（空值取[]）
     arr.value = stored ? stored.split(',') : [];
     // 获取数组中每个元素的天气信息
-    arr.value.forEach(city => fun(city));
+    arr.value.forEach(city => getData(city));
 
 }
 
@@ -121,7 +118,7 @@ getlocation()
 // 获取天气信息函数
 const locationcitylist = ref([])
 // let i = 0;
-async function fun(city) {
+async function getData(city) {
     await axios({
         url: `https://api.seniverse.com/v3/weather/daily.json?key=SZ17KOUjoHofDseq4&location=${city}&language=zh-Hans&unit=c&start=-1&days=7`,
         method: 'GET',
@@ -242,7 +239,6 @@ async function fun(city) {
         <button
             style="  margin-left: 10px; height: 30px; line-height: 30px; display: block; white-space: nowrap; outline: none;color: #fff;"
             @click="submitCity">提交</button>
-
     </div>
 
 </template>
@@ -255,6 +251,7 @@ async function fun(city) {
     /* font: 12px / 18px Simsun, Helvetica, Arial, sans-serif; */
     /* color: #fff; */
 }
+
 .header {
     background-color: transparent;
     display: flex;
@@ -283,7 +280,8 @@ async function fun(city) {
     color: #fff;
     text-align: start;
 }
-.logo p{
+
+.logo p {
     display: inline;
     font-size: 30px;
     color: #fff;
@@ -291,10 +289,11 @@ async function fun(city) {
     /* text-align: start; */
     /* margin-top: 10px; */
 }
+
 .logo img {
     margin-right: 10px;
     /* margin:auto 0; */
-    height:45px;
+    height: 45px;
     /* line-height: 45px; */
     /* width: 45px; */
     display: inline-block;
@@ -364,7 +363,7 @@ td:hover {
 .hidden1 {
     z-index: 1000;
     position: absolute;
-    top: 13%;
+    top: 11%;
     background: #fff;
     background: rgb(241, 245, 252);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
