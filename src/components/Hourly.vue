@@ -1,6 +1,6 @@
 <script setup>
 // 作用是展示数据
-import { ref, defineProps } from 'vue'
+import {  defineProps } from 'vue'
 defineProps({
     time: String,
     weatherImg: String,

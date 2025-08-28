@@ -31,7 +31,7 @@ async function getData() {
         console.log(err);
     })
 }
-fun8()
+getData()
 watch(() => user.city, () => {
     getData()
 })
@@ -83,7 +83,8 @@ watch(() => user.city, () => {
     </div>
 
 </template>
-<style>
+<style scoped>
+
 * {
     margin: 0;
     padding: 0;

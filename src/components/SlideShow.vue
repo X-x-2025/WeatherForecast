@@ -112,7 +112,7 @@ const slideright = () => {
             <div class="empty"></div>
             <div class="buttons">
                 <button style="outline: none;" class="left" @click="slideleft"><</button>
-                        <button style="outline: none;" class="right" @click="slideright">></button>
+                <button style="outline: none;" class="right" @click="slideright">></button>
             </div>
         </div>
 
@@ -122,126 +122,6 @@ const slideright = () => {
             :weatherImg="weatherimgarr[index]" 
             :temperature="temperaturearr[index]">
             </Hourly>
-            <!-- <div class="everyhour">
-                <div class="time">00:00</div>
-                <div class="icon"><img :src="weatherimgarr[0]" alt=""></div>
-                <div class="temp">{{ temperaturearr[0] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">01:00</div>
-                <div class="icon"><img :src="weatherimgarr[1]" alt=""></div>
-                <div class="temp">{{ temperaturearr[1] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">02:00</div>
-                <div class="icon"><img  :src="weatherimgarr[2]" alt=""></div>
-                <div class="temp">{{ temperaturearr[2] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">03:00</div>
-                <div class="icon"><img :src="weatherimgarr[3]" alt=""></div>
-                <div class="temp">{{ temperaturearr[3] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">04:00</div>
-                <div class="icon"><img :src="weatherimgarr[4]" alt=""></div>
-                <div class="temp">{{ temperaturearr[4] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">05:00</div>
-                <div class="icon"><img :src="weatherimgarr[5]" alt=""></div>
-                <div class="temp">{{ temperaturearr[5] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">06:00</div>
-                <div class="icon"><img :src="weatherimgarr[6]" alt=""></div>
-                <div class="temp">{{ temperaturearr[6] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">07:00</div>
-                <div class="icon"><img :src="weatherimgarr[7]" alt=""></div>
-                <div class="temp">{{ temperaturearr[7] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">08:00</div>
-                <div class="icon"><img :src="weatherimgarr[8]" alt=""></div>
-                <div class="temp">{{ temperaturearr[8] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">09:00</div>
-                <div class="icon"><img :src="weatherimgarr[9]" alt=""></div>
-                <div class="temp">{{ temperaturearr[9] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">10:00</div>
-                <div class="icon"><img :src="weatherimgarr[10]" alt=""></div>
-                <div class="temp">{{ temperaturearr[10] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">11:00</div>
-                <div class="icon"><img :src="weatherimgarr[11]" alt=""></div>
-                <div class="temp">{{ temperaturearr[11] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">12:00</div>
-                <div class="icon"><img :src="weatherimgarr[12]" alt=""></div>
-                <div class="temp">{{ temperaturearr[12] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">13:00</div>
-                <div class="icon"><img :src="weatherimgarr[13]" alt=""></div>
-                <div class="temp">{{ temperaturearr[13] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">14:00</div>
-                <div class="icon"><img :src="weatherimgarr[14]" alt=""></div>
-                <div class="temp">{{ temperaturearr[14] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">15:00</div>
-                <div class="icon"><img :src="weatherimgarr[15]" alt=""></div>
-                <div class="temp">{{ temperaturearr[15] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">16:00</div>
-                <div class="icon"><img :src="weatherimgarr[16]" alt=""></div>
-                <div class="temp">{{ temperaturearr[16] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">17:00</div>
-                <div class="icon"><img :src="weatherimgarr[17]" alt=""></div>
-                <div class="temp">{{ temperaturearr[17] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">18:00</div>
-                <div class="icon"><img :src="weatherimgarr[18]" alt=""></div>
-                <div class="temp">{{ temperaturearr[18] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">19:00</div>
-                <div class="icon"><img :src="weatherimgarr[19]" alt=""></div>
-                <div class="temp">{{ temperaturearr[19] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">20:00</div>
-                <div class="icon"><img :src="weatherimgarr[20]" alt=""></div>
-                <div class="temp">{{ temperaturearr[20] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">21:00</div>
-                <div class="icon"><img :src="weatherimgarr[21]" alt=""></div>
-                <div class="temp">{{ temperaturearr[21] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">22:00</div>
-                <div class="icon"><img :src="weatherimgarr[22]" alt=""></div>
-                <div class="temp">{{ temperaturearr[22] }}°</div>
-            </div>
-            <div class="everyhour">
-                <div class="time">23:00</div>
-                <div class="icon"><img :src="weatherimgarr[23]" alt=""></div>
-                <div class="temp">{{ temperaturearr[23] }}°</div>
-            </div>  -->
         </div>
     </div>
 </template>
@@ -283,8 +163,9 @@ a {
 
 .buttons {
     flex: 1;
+    /* margin-left: 200px; */
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     margin: 0 auto;
 }
@@ -351,6 +232,7 @@ a {
 /* 按钮样式 */
 .left,
 .right {
+    margin-left: 200px;
     text-align: center;
     margin: 0 5px;
     background-color: rgba(255, 255, 255, 0.7);
