@@ -1,52 +1,33 @@
 
 <script setup>
-import { ref, defineProps } from 'vue';
-import { Bar } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
+import { ref, onMounted, onUnmounted } from 'vue';
+import * as echarts from 'echarts';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
-
-const props = defineProps({
-    title: {
-        type: String,
-        default: '数据图表'
-    }
+const chartRef = ref();
+let chartInstance = null;
+onMounted(() => {
+    chartInstance = echarts.init(chartRef.value);
+    renderChart();
+    window.addEventListener('resize', handleResize);
 });
+const renderChart = () => {
+    const option = {
+        title: { text: '温度最值图' },
+        xAxis: { type: 'category', data: ['周一', '周二', '周三', '周四', '周五','周六','周天'] },
+        yAxis: { type: 'value' },
+        series: [{
+            data: [30, 20, 25, 26, 27,28,29],
 
-const chartData = ref({
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-        {
-            label: 'Demo 数据',
-            backgroundColor: '#42A5F5',
-            data: [40, 20, 12, 39, 10, 40, 39]
-        }
-    ]
-});
-
-const chartOptions = ref({
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top'
-        },
-        title: {
-            display: true,
-            text: '每月用户数据'
-        }
-    }
-});
+            type: 'line'
+        },{
+            data: [20, 24, 25, 26, 24,30,34],
+            type: 'line'
+        }]
+    };
+    chartInstance.setOption(option);
+};
 </script>
-
 <template>
-    <div>
-        <h2>{{ title }}</h2>
-        <BarChart :chart-data="chartData" :options="chartOptions" />
-    </div>
+    <div ref="chartRef" style="width: 100%; height: 400px;"></div>
 </template>
 
-<style scoped>
-h2 {
-    margin-bottom: 1rem;
-}
-</style>
