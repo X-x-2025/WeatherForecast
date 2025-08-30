@@ -4,7 +4,7 @@ import Center from './components/Center.vue';
 import LinearStatistic from './components/LinearStatistic.vue';
 import Navigation from './components/Navigation.vue';
 import SlideShow from './components/SlideShow.vue';
-import chart from './components/chart.vue';
+import chart from './components/chart1.vue';
 
 
 
