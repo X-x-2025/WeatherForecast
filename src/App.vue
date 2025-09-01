@@ -16,7 +16,7 @@ import chart from './components/chart.vue';
     <SlideShow></SlideShow>
     <LinearStatistic></LinearStatistic>
     <Advise></Advise>
-    <chart></chart>
+    <!-- <chart></chart> -->
 
 </template>
 <style>

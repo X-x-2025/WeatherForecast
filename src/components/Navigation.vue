@@ -165,7 +165,7 @@ async function getData(city) {
             38: "38@1x.png",
             39: "39@1x.png",
         }
-        console.log(res.data)
+        // console.log(res.data)
         locationcitylist.value.push({
             high: res.data.results[0].daily[1].high,
             low: res.data.results[0].daily[1].low,

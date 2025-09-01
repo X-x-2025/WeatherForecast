@@ -5,8 +5,8 @@ import { useCounterStore } from '../stores/counter';
 const user = useCounterStore()
 import Daily from './Daily.vue'
 import { onMounted } from 'vue'
-
-
+import chart from './chart.vue';
+import { defineProps } from 'vue'
 
 const montharr = ref([]);
 const weekarr = ref([]);
@@ -188,23 +188,26 @@ async function getData() {
         // console.log(dayarr);
         // console.log(wind_typearr);
         // console.log(wind_scalearr);
-        // console.log(higharr);
+        console.log(higharr);
         // console.log(lowarr);
         // console.log(dayweathertextarr);
         // console.log(nightweathertextarr);
         // console.log(dayweatherimgarr);
         // console.log(nightweatherimgarr);
     }
-
     ).catch((err) => {
         console.log(err);
     })
 }
 getData()
+
 watch(() => user.city, () => {
-    // console.log('城市已改变为',user.city);
-    getData()
+    console.log('城市已改变为',user.city);
+   getData()
+
 })
+// console.log(low);
+
 
 </script>
 <template>
@@ -214,22 +217,55 @@ watch(() => user.city, () => {
             <div class="empty"></div>
             <a href="https://www.nmc.cn/">15日天气预报</a>
         </div>
-
-        <div class="content">
-            <Daily v-for="(n, index) in 7" :key="index" 
-            :week="weekarr[index]" 
-            :month="montharr[index]"
-            :day="dayarr[index]" 
-            :dayWeatherText="dayweathertextarr[index]"
-            :dayWeatherImg="dayweatherimgarr[index]"  
-            :high="higharr[index]" 
-            :low="lowarr[index]"
-            :nightWeatherText="nightweathertextarr[index]" 
-            :nightWeatherImg="nightweatherimgarr[index]"
-            :windType="wind_typearr[index]" 
-            :windScale="wind_scalearr[index]">
-            </Daily>
+        <div class="week">
+            <div v-for="(n, index) in 7" :key="index">{{weekarr[index]}}</div>
         </div>
+        <div class="date">
+            <div v-for="(n, index) in 7" :key="index">{{montharr[index]}}月{{dayarr[index]}}日</div>
+        </div>
+        <div class="topweathertext">
+            <div v-for="(n, index) in 7" :key="index">{{dayweathertextarr[index]}}</div>
+
+        </div>
+        <div class="topweatherimg">
+            <div v-for="(n, index) in 7" :key="index">
+                <img :src='dayweatherimgarr[index]' alt="">
+            </div>
+        </div>
+
+        <chart :higharr="higharr" :lowarr="lowarr" style="width: 100%; height: 500px;"></chart>
+
+
+        <div class="buttonweatherimg">
+            <div v-for="(n, index) in 7" :key="index">
+                <img :src='nightweatherimgarr[index]' alt="">
+            </div>
+
+        </div>
+        <div class="buttonweathertext">
+            <div v-for="(n, index) in 7" :key="index">{{nightweathertextarr[index]}}</div>
+        </div>
+        <div class="wind">
+            <div v-for="(n, index) in 7" :key="index">{{wind_typearr[index]}}&nbsp;&nbsp;{{wind_scalearr[index]}}级</div>
+
+        </div>
+
+
+        <!-- <div class="content">
+            <Daily v-for="(n, index) in 7" :key="index" 
+            :week="user.weekarr[index]" 
+            :month="user.montharr[index]"
+            :day="user.dayarr[index]" 
+            :dayWeatherText="user.dayweathertextarr[index]"
+            :dayWeatherImg="user.dayweatherimgarr[index]"  
+            :high="user.higharr[index]" 
+            :low="user.lowarr[index]"
+            :nightWeatherText="user.nightweathertextarr[index]" 
+            :nightWeatherImg="user.nightweatherimgarr[index]"
+            :windType="user.wind_typearr[index]" 
+            :windScale="user.wind_scalearr[index]">
+            </Daily>
+        </div> -->
     </div>
 </template>
 
@@ -245,6 +281,7 @@ watch(() => user.city, () => {
     /* backdrop-filter: blur(10px); */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     background-color: transparent;
+    
 }
 
 .content {
@@ -281,6 +318,54 @@ a {
     text-decoration: none;
     color: inherit;
 }
+.week {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.date {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.topweathertext {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.topweatherimg {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.topweatherimg {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.topweatherimg {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.buttonweatherimg {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.buttonweathertext {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.wind {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
 
 
 
