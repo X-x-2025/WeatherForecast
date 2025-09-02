@@ -49,7 +49,7 @@ const renderChart = () => {
 
         yAxis: { type: 'value', show: false,
 
-        min:20
+        min:15
          },
 
         series: [{

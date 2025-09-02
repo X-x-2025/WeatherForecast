@@ -234,7 +234,7 @@ watch(() => user.city, () => {
         </div>
         <div class="high">
             <div v-for="(n, index) in 7" :key="index">
-                {{higharr[index]}}
+                {{higharr[index]}}°
 
             </div>
         </div>
@@ -242,7 +242,7 @@ watch(() => user.city, () => {
         <chart :higharr="higharr" :lowarr="lowarr" style="width: 1450px; height: 150px; margin-right: 500px;"></chart>
         <div class="low">
             <div v-for="(n, index) in 7" :key="index">
-                {{lowarr[index]}}
+                {{lowarr[index]}}°
             </div>
         </div>
         <div class="buttonweatherimg">
