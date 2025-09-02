@@ -21,22 +21,23 @@ const dayweatherimgarr = ref([]);
 const nightweatherimgarr = ref([]);
 
 async function getData() {
-    montharr.value = []
-    weekarr.value = []
-    dayarr.value = []
-    wind_typearr.value = []
-    wind_scalearr.value = []
-    higharr.value = []
-    lowarr.value = []
-    dayweathertextarr.value = []
-    nightweathertextarr.value = []
-    dayweatherimgarr.value = []
-    nightweatherimgarr.value = []
+  
 
     await axios({
         url: `https://api.seniverse.com/v3/weather/daily.json?key=SZ17KOUjoHofDseq4&location=${user.city}&language=zh-Hans&unit=c&start=-1&days=7`,
         method: 'GET',
     }).then((res) => {
+        montharr.value = []
+        weekarr.value = []
+        dayarr.value = []
+        wind_typearr.value = []
+        wind_scalearr.value = []
+        higharr.value = []
+        lowarr.value = []
+        dayweathertextarr.value = []
+        nightweathertextarr.value = []
+        dayweatherimgarr.value = []
+        nightweatherimgarr.value = []
         console.log(res.data);
         // 处理天气代码
         const weathertextmap = {
@@ -225,15 +226,27 @@ watch(() => user.city, () => {
         </div>
         <div class="topweathertext">
             <div v-for="(n, index) in 7" :key="index">{{dayweathertextarr[index]}}</div>
-
         </div>
         <div class="topweatherimg">
             <div v-for="(n, index) in 7" :key="index">
                 <img :src='dayweatherimgarr[index]' alt="">
             </div>
         </div>
+        <div class="high">
+            <div v-for="(n, index) in 7" :key="index">
+                {{higharr[index]}}
 
-        <chart :higharr="higharr" :lowarr="lowarr" style="width: 100%; height: 500px;"></chart>
+            </div>
+        </div>
+
+        <chart :higharr="higharr" :lowarr="lowarr" style="width: 1450px; height: 200px; margin-right: 500px;"></chart>
+
+
+        <div class="low">
+            <div v-for="(n, index) in 7" :key="index">
+                {{lowarr[index]}}
+            </div>
+        </div>
 
 
         <div class="buttonweatherimg">
@@ -360,6 +373,16 @@ a {
     align-items: center;
 }
 .wind {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.high {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.low {
     display: flex;
     justify-content: space-around;
     align-items: center;

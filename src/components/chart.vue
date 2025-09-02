@@ -1,9 +1,10 @@
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import * as echarts from 'echarts';
 import { useCounterStore } from '../stores/counter';
 import { defineProps } from 'vue'
+import { shouldShowAllLabels } from 'echarts/types/src/coord/axisHelper.js';
 
 const props = defineProps({
     higharr: {
@@ -19,17 +20,37 @@ const props = defineProps({
 
 const chartRef = ref();
 let chartInstance = null;
+const handleResize = () => {
+    if (chartInstance) {
+        chartInstance.resize();
+    }
+};
 
 onMounted(() => {
     chartInstance = echarts.init(chartRef.value)
     renderChart();
+    window.addEventListener('resize', handleResize);
+});
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize);
 });
 
 const renderChart = () => {
     const option = {
-        title: { text: '温度最值图' },
-        xAxis: { type: 'category', data: ['周一', '周二', '周三', '周四', '周五','周六','周天'] },
-        yAxis: { type: 'value' },
+        grid: {
+            top: 50,
+            bottom: 50,
+            left: 10,
+            right: 200
+        },
+
+        title: { text: '温度最值图',show:false },
+
+        xAxis: { type: 'category',  data: ['周一', '周二', '周三', '周四', '周五','周六','周天'], },
+        yAxis: { type: 'value',
+        min:20
+         },
+
         series: [{
             data: props.higharr,
             type: 'line'
@@ -41,6 +62,10 @@ const renderChart = () => {
     chartInstance.setOption(option);
 };
 // console.log(user.higharr);
+watch(() => props.higharr, () => {
+    renderChart();
+})
+
 
 
 </script>
@@ -50,8 +75,8 @@ const renderChart = () => {
 
 <style scoped>
 .chart {
-    
-    /* height: 100%; */
+    width: 900px;
+    height: 180px;
 }
  
 </style>
