@@ -1,10 +1,9 @@
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch, shallowReactive } from 'vue';
 import * as echarts from 'echarts';
 import { useCounterStore } from '../stores/counter';
 import { defineProps } from 'vue'
-import { shouldShowAllLabels } from 'echarts/types/src/coord/axisHelper.js';
 
 const props = defineProps({
     higharr: {
@@ -38,16 +37,18 @@ onUnmounted(() => {
 const renderChart = () => {
     const option = {
         grid: {
-            top: 50,
-            bottom: 50,
-            left: 10,
+            top: 10,
+            bottom: 10,
+            left:10,
             right: 200
         },
 
-        title: { text: '温度最值图',show:false },
+        title: { text: '温度最值图',show: false },
 
-        xAxis: { type: 'category',  data: ['周一', '周二', '周三', '周四', '周五','周六','周天'], },
-        yAxis: { type: 'value',
+        xAxis: { type: 'category', show: false, data: ['周一', '周二', '周三', '周四', '周五','周六','周天'], },
+
+        yAxis: { type: 'value', show: false,
+
         min:20
          },
 
